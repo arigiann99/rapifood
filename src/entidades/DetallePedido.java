@@ -1,0 +1,83 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entidades;
+
+/**
+ *
+ * @author GIANELLI
+ */
+public class DetallePedido {
+    private int id_detalle;
+    private int cantidad_productos;
+    private double costo;
+    private Pedido pedido;
+    private Producto producto;
+
+    public DetallePedido() {
+    }
+
+    public DetallePedido(int cantidad_productos, double costo, Pedido pedido, Producto producto) {
+        this.cantidad_productos = cantidad_productos;
+        this.costo = costo;
+        this.pedido = pedido;
+        this.producto = producto;
+    }
+
+    public DetallePedido(int id_detalle, int cantidad_productos, double costo, Pedido pedido, Producto producto) {
+        this.id_detalle = id_detalle;
+        this.cantidad_productos = cantidad_productos;
+        this.costo = costo;
+        this.pedido = pedido;
+        this.producto = producto;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public int getId_detalle() {
+        return id_detalle;
+    }
+
+    public void setId_detalle(int id_detalle) {
+        this.id_detalle = id_detalle;
+    }
+
+    public int getCantidad_productos() {
+        return cantidad_productos;
+    }
+
+    public void setCantidad_productos(int cantidad_productos) {
+        this.cantidad_productos = cantidad_productos;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    @Override
+    public String toString() {
+        return "DetallePedido{" + "id_detalle=" + id_detalle + ", cantidad_productos=" + cantidad_productos + ", costo=" + costo + ", pedido=" + pedido + ", producto=" + producto + '}';
+    }
+    
+    
+}
