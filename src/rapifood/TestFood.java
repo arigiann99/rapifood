@@ -8,9 +8,11 @@ package rapifood;
 import java.time.LocalDate;
 import modelos.Conexion;
 import entidades.Mesa;
+import entidades.Mesero;
 import entidades.Producto;
 import entidades.Reserva;
 import modelos.MesaData;
+import modelos.MeseroData;
 import modelos.ProductoData;
 import modelos.ReservaData;
 
@@ -49,6 +51,14 @@ public class TestFood {
         ProductoData pd = new ProductoData(con);
         //Producto p = new Producto(332226, "Salmon ahumado", 750, true);
         //pd.agregarProducto(p);               
+        
+        //MeseroData
+        MeseroData msd = new MeseroData(con);
+        Mesero mesero = new Mesero("Colombo", "Alberto Oscar", 27446449, "20-27446449-0", true);
+        //mesero.setId_mesero(5);  //se setea el id para anular o modificar
+        //msd.agregarMesero(mesero);
+        //msd.anularMesero(mesero);
+        //msd.modificarMesero(mesero);
     }
     
 }

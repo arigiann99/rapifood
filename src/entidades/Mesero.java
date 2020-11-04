@@ -14,21 +14,21 @@ public class Mesero {
     private String nombre;
     private String apellido;
     private int dni;
-    private long cuit;
+    private String cuit;
     private boolean estado;
 
     public Mesero() {
     }
 
-    public Mesero(String nombre, String apellido, int dni, long cuit, boolean estado) {
-        this.nombre = nombre;
+    public Mesero( String apellido, String nombre, int dni, String cuit, boolean estado) {
         this.apellido = apellido;
+        this.nombre = nombre;
         this.dni = dni;
         this.cuit = cuit;
         this.estado = estado;
     }
 
-    public Mesero(int id_mesero, String nombre, String apellido, int dni, long cuit, boolean estado) {
+    public Mesero(int id_mesero, String nombre, String apellido, int dni, String cuit, boolean estado) {
         this.id_mesero = id_mesero;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -77,13 +77,15 @@ public class Mesero {
         this.dni = dni;
     }
 
-    public long getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(long cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
+
+   
 
     @Override
     public String toString() {
