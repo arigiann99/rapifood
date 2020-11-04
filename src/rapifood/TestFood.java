@@ -8,8 +8,10 @@ package rapifood;
 import java.time.LocalDate;
 import modelos.Conexion;
 import entidades.Mesa;
+import entidades.Producto;
 import entidades.Reserva;
 import modelos.MesaData;
+import modelos.ProductoData;
 import modelos.ReservaData;
 
 /**
@@ -36,12 +38,17 @@ public class TestFood {
         //rd.anularReserva(r1); // se debe modicicar reserva instanciada porque es una baja "logica".
         
         //Mesa Data
-        //MesaData md = new MesaData(con);
+        MesaData md = new MesaData(con);
         //Mesa mesa = new Mesa(6, true);
        // mesa.setId_mesa(8); //se setea el id para anular o modificar
         //md.agregarMesa(mesa);
         //md.anularMesa(mesa);
         //md.modificarMesa(mesa);
+        
+        //ProductoData
+        ProductoData pd = new ProductoData(con);
+        //Producto p = new Producto(332226, "Salmon ahumado", 750, true);
+        //pd.agregarProducto(p);               
     }
     
 }
