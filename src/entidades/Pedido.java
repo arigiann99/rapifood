@@ -13,8 +13,8 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Date fecha_pedido, boolean estado, Mesa mesa, Mesero mesero) {
-        this.fecha_pedido = fecha_pedido;
+    public Pedido(boolean estado, Mesa mesa, Mesero mesero) {
+        //this.fecha_pedido = fecha_pedido;
         this.estado = estado;
         this.mesa = mesa;
         this.mesero = mesero;
