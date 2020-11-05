@@ -5,6 +5,7 @@
  */
 package rapifood;
 
+import entidades.DetallePedido;
 import java.time.LocalDate;
 import modelos.Conexion;
 import entidades.Mesa;
@@ -12,6 +13,7 @@ import entidades.Mesero;
 import entidades.Pedido;
 import entidades.Producto;
 import entidades.Reserva;
+import modelos.DetallePedidoData;
 import modelos.MesaData;
 import modelos.MeseroData;
 import modelos.PedidoData;
@@ -51,7 +53,7 @@ public class TestFood {
 
         //ProductoData
         ProductoData pd = new ProductoData(con);
-        //Producto p = new Producto(332226, "Salmon ahumado", 750, true);
+        Producto p = new Producto(332226, "Salmon ahumado", 750, true);
         //pd.agregarProducto(p);               
 
         //MeseroData
@@ -65,10 +67,15 @@ public class TestFood {
         //PedidoData
         PedidoData ped = new PedidoData(con);
         Pedido pedido = new Pedido(true, mesa, mesero);
-        pedido.setId_pedido(12);
+        pedido.setId_pedido(11);
         //ped.registrarPedido(pedido);
         //ped.anularPedido(pedido);
         //ped.modificarPedido(pedido);
+        
+        //Detalle pedido data
+        DetallePedidoData dpd = new DetallePedidoData(con);
+        DetallePedido dp = new DetallePedido( pedido, p);
+        dpd.Cantidad_productos(11);
 
     }
 

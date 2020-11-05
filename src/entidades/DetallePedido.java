@@ -10,8 +10,9 @@ package entidades;
  * @author GIANELLI
  */
 public class DetallePedido {
+
     private int id_detalle;
-    private int cantidad_productos;
+    //private int cantidad_productos;
     private double costo;
     private Pedido pedido;
     private Producto producto;
@@ -19,8 +20,8 @@ public class DetallePedido {
     public DetallePedido() {
     }
 
-    public DetallePedido(int cantidad_productos, double costo, Pedido pedido, Producto producto) {
-        this.cantidad_productos = cantidad_productos;
+    public DetallePedido(Pedido pedido, Producto producto) {
+
         this.costo = costo;
         this.pedido = pedido;
         this.producto = producto;
@@ -28,7 +29,7 @@ public class DetallePedido {
 
     public DetallePedido(int id_detalle, int cantidad_productos, double costo, Pedido pedido, Producto producto) {
         this.id_detalle = id_detalle;
-        this.cantidad_productos = cantidad_productos;
+
         this.costo = costo;
         this.pedido = pedido;
         this.producto = producto;
@@ -50,14 +51,6 @@ public class DetallePedido {
         this.id_detalle = id_detalle;
     }
 
-    public int getCantidad_productos() {
-        return cantidad_productos;
-    }
-
-    public void setCantidad_productos(int cantidad_productos) {
-        this.cantidad_productos = cantidad_productos;
-    }
-
     public double getCosto() {
         return costo;
     }
@@ -76,8 +69,7 @@ public class DetallePedido {
 
     @Override
     public String toString() {
-        return "DetallePedido{" + "id_detalle=" + id_detalle + ", cantidad_productos=" + cantidad_productos + ", costo=" + costo + ", pedido=" + pedido + ", producto=" + producto + '}';
+        return "DetallePedido{" + "id_detalle=" + id_detalle + ", cantidad_productos=" + ", costo=" + costo + ", pedido=" + pedido + ", producto=" + producto + '}';
     }
-    
-    
+
 }
