@@ -11,12 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author GIANELLI
- */
 public class PedidoData {
 
     private Connection con = null;
@@ -82,7 +81,33 @@ public class PedidoData {
             JOptionPane.showMessageDialog(null, "No se pudo modificar reserva");
         }
     }
-    
-    
+
+    public List<Pedido> PedidosAtendidosPorMeseros(int id, LocalDate fecha) {
+        List<Pedido> mesero = new ArrayList<>();
+        Pedido pedido = new Pedido();
+
+        try {
+
+            String sql = "SELECT * FROM `pedido` WHERE  fecha_pedido = ? AND `id_mesero`=?";
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            st.setDate(1, java.sql.Date.valueOf(fecha));
+            st.setInt(2, id);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                mesero.add(pedido);
+            }
+
+            st.close();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se pudo obtener resultados");
+        }
+        System.out.println("El mesero atendio: " + mesero.size() + " pedidos");
+        return mesero;
+    }
 
 }

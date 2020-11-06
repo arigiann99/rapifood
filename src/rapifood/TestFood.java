@@ -6,13 +6,14 @@
 package rapifood;
 
 import entidades.DetallePedido;
-import java.time.LocalDate;
 import modelos.Conexion;
 import entidades.Mesa;
 import entidades.Mesero;
 import entidades.Pedido;
 import entidades.Producto;
 import entidades.Reserva;
+import java.sql.Date;
+import java.time.LocalDate;
 import modelos.DetallePedidoData;
 import modelos.MesaData;
 import modelos.MeseroData;
@@ -59,7 +60,7 @@ public class TestFood {
         //MeseroData
         MeseroData msd = new MeseroData(con);
         Mesero mesero = new Mesero("Colombo", "Alberto Oscar", 27446449, "20-27446449-0", true);
-        mesero.setId_mesero(5);  //se setea el id para anular o modificar
+        //mesero.setId_mesero(3);  //se setea el id para anular o modificar
         //msd.agregarMesero(mesero);
         //msd.anularMesero(mesero);
         //msd.modificarMesero(mesero);
@@ -67,15 +68,16 @@ public class TestFood {
         //PedidoData
         PedidoData ped = new PedidoData(con);
         Pedido pedido = new Pedido(true, mesa, mesero);
-        pedido.setId_pedido(11);
+        //pedido.setId_pedido(11);
         //ped.registrarPedido(pedido);
         //ped.anularPedido(pedido);
         //ped.modificarPedido(pedido);
+        //ped.PedidosAtendidosPorMeseros(3,LocalDate.of(2020, 11, 06));
         
         //Detalle pedido data
         DetallePedidoData dpd = new DetallePedidoData(con);
         DetallePedido dp = new DetallePedido( pedido, p);
-        dpd.Cantidad_productos(11);
+        //dpd.Cantidad_productos(11);
 
     }
 
