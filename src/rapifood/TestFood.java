@@ -72,7 +72,7 @@ public class TestFood {
         //ped.registrarPedido(pedido);
         //ped.anularPedido(pedido);
         //ped.modificarPedido(pedido);
-        //ped.PedidosAtendidosPorMeseros(3,LocalDate.of(2020, 11, 06));
+        ped.PedidosAtendidosPorMeseros(3);
         
         //Detalle pedido data
         DetallePedidoData dpd = new DetallePedidoData(con);

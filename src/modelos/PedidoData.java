@@ -82,10 +82,10 @@ public class PedidoData {
         }
     }
 
-    public List<Pedido> PedidosAtendidosPorMeseros(int id, LocalDate fecha) {
+    public List<Pedido> PedidosAtendidosPorMeseros(int id) {
         List<Pedido> mesero = new ArrayList<>();
         Pedido pedido = new Pedido();
-
+        LocalDate fecha = LocalDate.now(); // Al final del día obtener cuántos pedidos atendió cada mesero. este metodo consultara los pedidos del dia.
         try {
 
             String sql = "SELECT * FROM `pedido` WHERE  fecha_pedido = ? AND `id_mesero`=?";
@@ -99,7 +99,6 @@ public class PedidoData {
             while (rs.next()) {
                 mesero.add(pedido);
             }
-
             st.close();
 
         } catch (SQLException ex) {
