@@ -7,7 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ReservaData {
@@ -89,9 +93,34 @@ public class ReservaData {
             JOptionPane.showMessageDialog(null, " No se pudo actualizar reserva");
         }
     }
-    /*
-    public List<Reserva> listarReservas(Date fecha){
-        
+
+    public List<Reserva> listarReservas(LocalDate fecha) {
+        List<Reserva> reservas = new ArrayList<>();
+        Reserva reserva = new Reserva();
+        try {
+
+            String sql = "SELECT * FROM `reserva` WHERE `fecha_reserva`=?";
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setDate(1, Date.valueOf(fecha));
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                reserva.setApellido(rs.getString("apellido"));
+                reserva.setNombre(rs.getString("nombre"));
+                reserva.setDni(rs.getInt("dni"));
+                reserva.setComensales(rs.getInt("comensales"));
+
+                System.out.println("Nombre: " + reserva.getNombre() + " " + reserva.getApellido() + " dni: " + reserva.getDni());
+                reservas.add(reserva);
+            }
+
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo listar las reservas");
+        }
+
+        return reservas;
     }
-*/
+
 }

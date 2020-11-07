@@ -43,6 +43,7 @@ public class TestFood {
         //ReservaData - Prueba de Metodos
         //rd.registrarReserva(r1);
         //rd.anularReserva(r1); // se debe modicicar reserva instanciada porque es una baja "logica".
+        rd.listarReservas(LocalDate.of(2020, 11, 04));
         
         //Mesa Data
         MesaData md = new MesaData(con);
@@ -72,7 +73,7 @@ public class TestFood {
         //ped.registrarPedido(pedido);
         //ped.anularPedido(pedido);
         //ped.modificarPedido(pedido);
-        ped.PedidosAtendidosPorMeseros(3);
+        //ped.PedidosAtendidosPorMeseros(3);
         
         //Detalle pedido data
         DetallePedidoData dpd = new DetallePedidoData(con);

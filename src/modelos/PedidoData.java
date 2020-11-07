@@ -6,11 +6,7 @@
 package modelos;
 
 import entidades.Pedido;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +87,7 @@ public class PedidoData {
             String sql = "SELECT * FROM `pedido` WHERE  fecha_pedido = ? AND `id_mesero`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            st.setDate(1, java.sql.Date.valueOf(fecha));
+            st.setDate(1, Date.valueOf(fecha));
             st.setInt(2, id);
 
             ResultSet rs = st.executeQuery();
