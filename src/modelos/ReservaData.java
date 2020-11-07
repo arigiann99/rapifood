@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ReservaData {
@@ -110,8 +108,11 @@ public class ReservaData {
                 reserva.setNombre(rs.getString("nombre"));
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
+                reserva.setFechaActual(rs.getDate("fecha_reserva"));
+                reserva.setFechaHora(rs.getDate("fecha_para_reserva").toLocalDate());
+                reserva.setEstado(rs.getBoolean("estado"));
 
-                System.out.println("Nombre: " + reserva.getNombre() + " " + reserva.getApellido() + " dni: " + reserva.getDni());
+                System.out.println(reserva.toString());
                 reservas.add(reserva);
             }
 
