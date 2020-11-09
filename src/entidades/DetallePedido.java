@@ -13,7 +13,7 @@ public class DetallePedido {
 
     private int id_detalle;
     //private int cantidad_productos;
-    private double costo;
+    //private double costo;
     private Pedido pedido;
     private Producto producto;
 
@@ -21,25 +21,13 @@ public class DetallePedido {
     }
 
     public DetallePedido(Pedido pedido, Producto producto) {
-
-        this.costo = costo;
         this.pedido = pedido;
         this.producto = producto;
     }
 
-    public DetallePedido(int id_detalle, int cantidad_productos, double costo, Pedido pedido, Producto producto) {
+    public DetallePedido(int id_detalle, Pedido pedido, Producto producto) {
         this.id_detalle = id_detalle;
-
-        this.costo = costo;
         this.pedido = pedido;
-        this.producto = producto;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
@@ -51,14 +39,6 @@ public class DetallePedido {
         this.id_detalle = id_detalle;
     }
 
-    public double getCosto() {
-        return costo;
-    }
-
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
-
     public Pedido getPedido() {
         return pedido;
     }
@@ -67,9 +47,17 @@ public class DetallePedido {
         this.pedido = pedido;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     @Override
     public String toString() {
-        return "DetallePedido{" + "id_detalle=" + id_detalle + ", cantidad_productos=" + ", costo=" + costo + ", pedido=" + pedido + ", producto=" + producto + '}';
+        return "DetallePedido{" + "id_detalle=" + id_detalle + ", cantidad_productos=" + "pedido=" + pedido + ", producto=" + producto + '}';
     }
 
 }

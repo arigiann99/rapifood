@@ -10,6 +10,7 @@ package entidades;
  * @author GIANELLI
  */
 public class Mesero {
+
     private int id_mesero;
     private String nombre;
     private String apellido;
@@ -20,7 +21,7 @@ public class Mesero {
     public Mesero() {
     }
 
-    public Mesero( String apellido, String nombre, int dni, String cuit, boolean estado) {
+    public Mesero(String apellido, String nombre, int dni, String cuit, boolean estado) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.dni = dni;
@@ -85,12 +86,9 @@ public class Mesero {
         this.cuit = cuit;
     }
 
-   
-
     @Override
     public String toString() {
-        return "Mesero{" + "id_mesero=" + id_mesero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", estado=" + estado + '}';
+        return "Mesero{" + "id_mesero=" + id_mesero + '}';
     }
-    
-    
+
 }

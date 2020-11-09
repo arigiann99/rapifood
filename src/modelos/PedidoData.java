@@ -5,6 +5,8 @@
  */
 package modelos;
 
+import entidades.Mesa;
+import entidades.Mesero;
 import entidades.Pedido;
 import java.sql.*;
 import java.time.LocalDate;
@@ -84,7 +86,7 @@ public class PedidoData {
         LocalDate fecha = LocalDate.now(); // Al final del día obtener cuántos pedidos atendió cada mesero. este metodo consultara los pedidos del dia.
         try {
 
-            String sql = "SELECT * FROM `pedido` WHERE  fecha_pedido = ? AND `id_mesero`=?";
+            String sql = "SELECT * FROM `pedido` WHERE  fecha_pedido =?  AND `id_mesero`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             st.setDate(1, Date.valueOf(fecha));
@@ -105,4 +107,71 @@ public class PedidoData {
         return mesero;
     }
 
+    public double costoXPedido(int id) {
+        Pedido pedido = new Pedido();
+        try {
+            String sql = "SELECT SUM(producto.precio) FROM `detalle_pedido` ,`producto` WHERE `id_pedido`=? AND detalle_pedido.id_producto = producto.id_producto";
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                pedido.setCosto(rs.getDouble(1));
+                System.out.println();
+            }
+            String sql2 = "UPDATE `pedido` SET `costo`=? WHERE pedido.id_pedido=?";
+            PreparedStatement stt = con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+            stt.setDouble(1, pedido.getCosto());
+            stt.setInt(2, id);
+            stt.executeUpdate();
+
+            stt.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se pudo obtener resultados");
+        }
+        return pedido.getCosto();
+    }
+
+    public List<Pedido> listarPedidos(LocalDate fecha) {
+        List<Pedido> pedidos = new ArrayList<>();
+        Pedido pedido = new Pedido();
+
+        String sql = "SELECT * FROM `pedido` WHERE `fecha_pedido`=?";
+        try {
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setDate(1, Date.valueOf(fecha));
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
+                pedido.setEstado(rs.getBoolean("estado"));
+
+                Mesa mesa = new Mesa();
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.getId_mesa();
+                pedido.setMesa(mesa);
+
+                Mesero mesero = new Mesero();
+                mesero.setId_mesero(rs.getInt("id_mesero"));
+                mesero.getId_mesero();
+                pedido.setMesero(mesero);
+
+                pedido.setCosto(rs.getInt("costo"));
+
+                System.out.println(pedido.toString());
+                pedidos.add(pedido);
+            }
+
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo listar las reservas");
+        }
+
+        return pedidos;
+    }
 }

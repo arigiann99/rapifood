@@ -7,6 +7,7 @@ public class Pedido {
     private int id_pedido;
     private Date fecha_pedido;
     private boolean estado;
+    private double costo;
     private Mesa mesa;
     private Mesero mesero;
 
@@ -14,25 +15,26 @@ public class Pedido {
     }
 
     public Pedido(boolean estado, Mesa mesa, Mesero mesero) {
-        //this.fecha_pedido = fecha_pedido;
         this.estado = estado;
         this.mesa = mesa;
         this.mesero = mesero;
     }
+    
+    
+    public Pedido(Date fecha_pedido, boolean estado, double costo, Mesa mesa, Mesero mesero) {
+        this.fecha_pedido = fecha_pedido;
+        this.estado = estado;
+        this.costo = costo;
+        this.mesa = mesa;
+        this.mesero = mesero;
+    }
 
-    public Pedido(int id_pedido, Date fecha_pedido, boolean estado, Mesa mesa, Mesero mesero) {
+    public Pedido(int id_pedido, Date fecha_pedido, boolean estado, double costo, Mesa mesa, Mesero mesero) {
         this.id_pedido = id_pedido;
         this.fecha_pedido = fecha_pedido;
         this.estado = estado;
+        this.costo = costo;
         this.mesa = mesa;
-        this.mesero = mesero;
-    }
-
-    public Mesero getMesero() {
-        return mesero;
-    }
-
-    public void setMesero(Mesero mesero) {
         this.mesero = mesero;
     }
 
@@ -60,6 +62,14 @@ public class Pedido {
         this.estado = estado;
     }
 
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
     public Mesa getMesa() {
         return mesa;
     }
@@ -68,9 +78,18 @@ public class Pedido {
         this.mesa = mesa;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", fecha_pedido=" + fecha_pedido + ", estado=" + estado + ", mesa=" + mesa + ", mesero=" + mesero + '}';
+    public Mesero getMesero() {
+        return mesero;
     }
 
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "id_pedido=" + id_pedido + ", fecha_pedido=" + fecha_pedido + ", estado=" + estado + ", costo=" + costo + ", mesa=" + mesa + ", mesero=" + mesero + '}';
+    }
+
+   
 }

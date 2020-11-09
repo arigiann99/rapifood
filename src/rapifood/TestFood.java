@@ -12,8 +12,7 @@ import entidades.Mesero;
 import entidades.Pedido;
 import entidades.Producto;
 import entidades.Reserva;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.*;
 import modelos.DetallePedidoData;
 import modelos.MesaData;
 import modelos.MeseroData;
@@ -21,15 +20,10 @@ import modelos.PedidoData;
 import modelos.ProductoData;
 import modelos.ReservaData;
 
-/**
- *
- * @author GIANELLI
- */
+
 public class TestFood {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
         Conexion con = new Conexion();
         ReservaData rd = new ReservaData(con);
@@ -37,13 +31,13 @@ public class TestFood {
         //Mesa mesa = new Mesa(); // prueba para registrar una reserva.
         //mesa.setId_mesa(4);
         
-        // Reserva r1 = new Reserva("Roman", "Riquelme", 36227267,4, LocalDate.now(), false,mesa);
+        //Reserva r1 = new Reserva("Roman", "Riquelme", 36227267,4, LocalDate.now(), false,mesa);
         //r1.setId_reserva(11);//se setea el id para anular o modificar
         
         //ReservaData - Prueba de Metodos
         //rd.registrarReserva(r1);
         //rd.anularReserva(r1); // se debe modicicar reserva instanciada porque es una baja "logica".
-        rd.listarReservas(LocalDate.of(2020, 11, 04));
+        //rd.listarReservas(LocalDate.of(2020, 11, 04)); //Las reservas realizadas en una fecha específica.
         
         //Mesa Data
         MesaData md = new MesaData(con);
@@ -61,7 +55,7 @@ public class TestFood {
         //MeseroData
         MeseroData msd = new MeseroData(con);
         Mesero mesero = new Mesero("Colombo", "Alberto Oscar", 27446449, "20-27446449-0", true);
-        //mesero.setId_mesero(3);  //se setea el id para anular o modificar
+        mesero.setId_mesero(3);  //se setea el id para anular o modificar
         //msd.agregarMesero(mesero);
         //msd.anularMesero(mesero);
         //msd.modificarMesero(mesero);
@@ -73,12 +67,16 @@ public class TestFood {
         //ped.registrarPedido(pedido);
         //ped.anularPedido(pedido);
         //ped.modificarPedido(pedido);
-        //ped.PedidosAtendidosPorMeseros(3);
+        //ped.PedidosAtendidosPorMeseros(3); // Al final del día obtener cuántos pedidos atendió cada mesero.
+        //ped.costoXPedido(11);
+        //ped.listarPedidos(LocalDate.of(2020, 10, 29)); // Obtener pedidos realizados y 
+                                                        //los montos consumidos por cada mesa en una fecha dada.
         
         //Detalle pedido data
         DetallePedidoData dpd = new DetallePedidoData(con);
         DetallePedido dp = new DetallePedido( pedido, p);
-        //dpd.Cantidad_productos(11);
+        //dpd.agregarDetalles(dp);
+        
 
     }
 
