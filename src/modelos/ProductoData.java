@@ -83,4 +83,24 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "No se pudo modificar producto");
         }
     }
+
+    public Producto buscarProducto(int id) {
+        Producto producto = new Producto();
+        String sql = " SELECT * FROM producto WHERE id_producto=?";
+        try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setEstado(rs.getBoolean("estado"));
+            }
+            System.out.println("Detalle del Producto:{ Nombre: " + producto.getNombre() + " Precio: " + producto.getPrecio() + " Estado: " + producto.isEstado() + " }");
+            ps.close();
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar el producto");
+        }
+        return producto;
+    }
 }

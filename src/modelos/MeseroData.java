@@ -6,11 +6,7 @@
 package modelos;
 
 import entidades.Mesero;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -85,5 +81,29 @@ public class MeseroData {
             System.err.print(ex.getMessage());
             JOptionPane.showMessageDialog(null, "No se pudo modificar informacion de mesero");
         }
+    }
+
+    public Mesero buscarMesero(int id) {
+        Mesero mesero = new Mesero();
+        String sql = "SELECT * FROM mesero WHERE id_mesero=?";
+        try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                mesero.setDni(rs.getInt("dni"));
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setApellido(rs.getString("apellido"));
+                mesero.setCuit(rs.getString("cuit"));
+                mesero.setEstado(rs.getBoolean("estado"));
+            }
+            System.out.println("Mesero: { Nombre: " + mesero.getNombre() + " " + mesero.getApellido() + " Dni: " + mesero.getDni() + " Cuit: " + mesero.getCuit() + " Estado: " + mesero.isEstado() + " }");
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar al mesero");
+        }
+        return mesero;
     }
 }

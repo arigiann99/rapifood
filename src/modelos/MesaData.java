@@ -76,4 +76,25 @@ public class MesaData {
             JOptionPane.showMessageDialog(null, "No se pudo modificar mesa");
         }
     }
+
+    public Mesa buscarMesa(int id) {
+        Mesa mesa = new Mesa();
+        String sql = "SELECT * FROM mesa WHERE id_mesa=?";
+        try (
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setCapacidad(rs.getInt("capacidad"));
+            }
+            System.out.println("Detalle de la Mesa:{  Capacidad: " + mesa.getCapacidad() + " comensales,  Estado: " + mesa.isEstado() + " Identificador: " + mesa.getId_mesa() + " }");
+            ps.close();
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar la mesa");
+        }
+        return mesa;
+    }
 }

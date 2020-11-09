@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2020 a las 13:10:33
+-- Tiempo de generación: 09-11-2020 a las 20:49:45
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -29,8 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `detalle_pedido` (
   `id_detalle` int(11) NOT NULL,
-  `cantidad_productos` int(11) NOT NULL,
-  `costo` double DEFAULT NULL,
   `id_pedido` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,9 +37,14 @@ CREATE TABLE `detalle_pedido` (
 -- Volcado de datos para la tabla `detalle_pedido`
 --
 
-INSERT INTO `detalle_pedido` (`id_detalle`, `cantidad_productos`, `costo`, `id_pedido`, `id_producto`) VALUES
-(4, 0, NULL, 11, 16),
-(5, 0, NULL, 11, 18);
+INSERT INTO `detalle_pedido` (`id_detalle`, `id_pedido`, `id_producto`) VALUES
+(12, 17, 22),
+(13, 17, 16),
+(14, 17, 21),
+(15, 18, 23),
+(16, 18, 19),
+(17, 18, 18),
+(18, 17, 25);
 
 -- --------------------------------------------------------
 
@@ -60,13 +63,16 @@ CREATE TABLE `mesa` (
 --
 
 INSERT INTO `mesa` (`id_mesa`, `capacidad`, `estado`) VALUES
-(1, 4, 0),
+(1, 4, 1),
 (2, 4, 1),
 (3, 10, 1),
-(4, 4, 0),
+(4, 4, 1),
 (5, 10, 1),
 (6, 4, 1),
-(7, 2, 1);
+(7, 2, 1),
+(8, 6, 1),
+(9, 2, 1),
+(10, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +84,7 @@ CREATE TABLE `mesero` (
   `id_mesero` int(11) NOT NULL,
   `apellido` varchar(20) DEFAULT NULL,
   `nombre` varchar(20) DEFAULT NULL,
-  `cuit` bigint(11) DEFAULT NULL,
+  `cuit` varchar(20) DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL,
   `dni` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -88,10 +94,10 @@ CREATE TABLE `mesero` (
 --
 
 INSERT INTO `mesero` (`id_mesero`, `apellido`, `nombre`, `cuit`, `estado`, `dni`) VALUES
-(1, 'Sosa', 'Lucas', 20355689890, 1, 35568989),
-(2, 'Velazquez', 'Mario', 20375659790, 1, 37565979),
-(3, 'Suarez', 'Martin', 20416655560, 1, 41665556),
-(4, 'Alvarez', 'Juan', 20193368890, 0, 19336889);
+(6, 'Sosa', 'Alberto Oscar', '20-27446449-0', 1, 27446449),
+(7, 'Rosales', 'Mario Dario', '20-34629654-0', 0, 34629654),
+(8, 'Quiroga', 'Juan Carlos', '20-30155236-0', 1, 30155236),
+(9, 'Zabala', 'Roxana', '27-39877455-3', 1, 39877455);
 
 -- --------------------------------------------------------
 
@@ -101,8 +107,9 @@ INSERT INTO `mesero` (`id_mesero`, `apellido`, `nombre`, `cuit`, `estado`, `dni`
 
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
-  `estado` tinyint(1) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT 1,
   `fecha_pedido` date DEFAULT current_timestamp(),
+  `costo` double DEFAULT NULL,
   `id_mesa` int(11) NOT NULL,
   `id_mesero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -111,8 +118,9 @@ CREATE TABLE `pedido` (
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `estado`, `fecha_pedido`, `id_mesa`, `id_mesero`) VALUES
-(11, 1, '2020-10-29', 2, 3);
+INSERT INTO `pedido` (`id_pedido`, `estado`, `fecha_pedido`, `costo`, `id_mesa`, `id_mesero`) VALUES
+(17, 1, '2020-11-09', 1255.5, 8, 9),
+(18, 1, '2020-11-09', 1370.75, 4, 9);
 
 -- --------------------------------------------------------
 
@@ -136,7 +144,13 @@ INSERT INTO `producto` (`id_producto`, `codigo`, `nombre`, `precio`, `estado`) V
 (16, 5512366, 'parillada', 550, 1),
 (17, 5516332, 'pastas', 350, 1),
 (18, 5366889, 'ensalada cesar', 220, 1),
-(19, 5122366, 'coca-cola', 100, 1);
+(19, 5122366, 'coca-cola 1250cc', 100.75, 1),
+(20, 332226, 'Salmon ahumado', 750, 1),
+(21, 332278, 'Ensalada Rusa', 250, 1),
+(22, 333256, 'vino Nampe 750cc', 350, 1),
+(23, 3852246, 'chivito a las llamas', 1050, 1),
+(24, 332235, 'Agua mineral 500cc', 100, 1),
+(25, 1566455, 'helado', 105.5, 1);
 
 -- --------------------------------------------------------
 
@@ -150,9 +164,10 @@ CREATE TABLE `reserva` (
   `nombre` varchar(20) DEFAULT NULL,
   `dni` int(11) DEFAULT NULL,
   `comensales` int(11) DEFAULT NULL,
-  `fecha_hora` datetime DEFAULT NULL,
+  `fecha_para_reservar` date DEFAULT NULL,
+  `hora` time DEFAULT NULL,
   `estado` tinyint(1) DEFAULT 1,
-  `fecha_actual` date NOT NULL DEFAULT current_timestamp(),
+  `fecha_reserva` date NOT NULL DEFAULT current_timestamp(),
   `id_mesa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -160,10 +175,10 @@ CREATE TABLE `reserva` (
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id_reserva`, `apellido`, `nombre`, `dni`, `comensales`, `fecha_hora`, `estado`, `fecha_actual`, `id_mesa`) VALUES
-(7, 'Giannelli', 'Ariel', 36227267, 4, '2020-10-30 21:05:44', 0, '2020-10-29', 2),
-(8, 'Teveiz', 'Ariel', 36227267, 4, '2020-11-04 00:00:00', 1, '2020-11-04', 1),
-(11, 'Riquelme', 'Roman', 36227267, 4, '2020-11-04 00:00:00', 0, '2020-11-04', 4);
+INSERT INTO `reserva` (`id_reserva`, `apellido`, `nombre`, `dni`, `comensales`, `fecha_para_reservar`, `hora`, `estado`, `fecha_reserva`, `id_mesa`) VALUES
+(15, 'Azcurra', 'Julian', 31556998, 2, '2020-11-19', '12:30:00', 1, '2020-11-09', 10),
+(16, 'Pochetino', 'Marcelo', 20123654, 4, '2020-11-20', '21:15:00', 1, '2020-11-09', 4),
+(17, 'Weber', 'Lucas', 27996774, 6, '2020-11-27', '22:30:00', 1, '2020-11-09', 8);
 
 --
 -- Índices para tablas volcadas
@@ -218,37 +233,37 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `mesero`
 --
 ALTER TABLE `mesero`
-  MODIFY `id_mesero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_mesero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas

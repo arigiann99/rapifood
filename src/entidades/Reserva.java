@@ -5,7 +5,7 @@
  */
 package entidades;
 
-import java.time.LocalDate;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -19,7 +19,8 @@ public class Reserva {
     private String apellido;
     private int dni;
     private int comensales;
-    private LocalDate fechaHora;
+    private LocalDate fecha_para_reservar;
+    private LocalTime hora;
     private boolean estado;
     private Date fechaActual;
     private Mesa mesa;
@@ -27,32 +28,28 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fechaHora, boolean estado, Mesa mesa) {
+    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, Mesa mesa) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.comensales = comensales;
-        this.fechaHora = fechaHora;
+        this.fecha_para_reservar = fecha_para_reservar;
+        this.hora = hora;
         this.estado = estado;
         this.mesa = mesa;
     }
 
-    public Reserva(int id_reserva, String nombre, String apellido, int dni, int comensales, LocalDate fechaHora, boolean estado) {
+    public Reserva(int id_reserva, String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, Date fechaActual, Mesa mesa) {
         this.id_reserva = id_reserva;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.comensales = comensales;
-        this.fechaHora = fechaHora;
+        this.fecha_para_reservar = fecha_para_reservar;
+        this.hora = hora;
         this.estado = estado;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+        this.fechaActual = fechaActual;
+        this.mesa = mesa;
     }
 
     public int getId_reserva() {
@@ -95,12 +92,28 @@ public class Reserva {
         this.comensales = comensales;
     }
 
-    public LocalDate getFechaHora() {
-        return fechaHora;
+    public LocalDate getFecha_para_reservar() {
+        return fecha_para_reservar;
     }
 
-    public void setFechaHora(LocalDate fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFecha_para_reservar(LocalDate fecha_para_reservar) {
+        this.fecha_para_reservar = fecha_para_reservar;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public Date getFechaActual() {
@@ -121,7 +134,10 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "id_reserva=" + id_reserva + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", comensales=" + comensales + ", fechaHora=" + fechaHora + ", estado=" + estado + ", fechaActual=" + fechaActual + '}';
+        return "Reserva{" + "id_reserva=" + id_reserva + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", comensales=" + comensales + ", fecha_para_reservar=" + fecha_para_reservar + ", hora=" + hora + ", estado=" + estado + ", fechaActual=" + fechaActual + ", mesa=" + mesa + '}';
     }
+
+    
+    
 
 }

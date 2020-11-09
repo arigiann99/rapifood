@@ -95,15 +95,15 @@ public class PedidoData {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
+
                 mesero.add(pedido);
             }
-            st.close();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "No se pudo obtener resultados");
         }
-        System.out.println("El mesero atendio: " + mesero.size() + " pedidos");
+        System.out.println("El mesero N°" + id + " atendio: " + mesero.size() + " pedidos");
         return mesero;
     }
 

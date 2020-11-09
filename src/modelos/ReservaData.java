@@ -1,5 +1,6 @@
 package modelos;
 
+import entidades.Mesa;
 import entidades.Reserva;
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +24,16 @@ public class ReservaData {
 
     public void registrarReserva(Reserva reserva) {
         try {
-            String sql = "INSERT INTO `reserva`(`apellido`, `nombre`, `dni`, `comensales`, `fecha_hora`, `estado`, `id_mesa`) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `reserva`(`apellido`, `nombre`, `dni`, `comensales`, `fecha_para_reservar`,`hora`, `estado`, `id_mesa`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, reserva.getApellido());
             st.setString(2, reserva.getNombre());
             st.setInt(3, reserva.getDni());
             st.setInt(4, reserva.getComensales());
-            st.setDate(5, Date.valueOf(reserva.getFechaHora()));
-            st.setBoolean(6, reserva.isEstado());
-            st.setInt(7, reserva.getMesa().getId_mesa());
+            st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar()));
+            st.setTime(6, Time.valueOf(reserva.getHora()));
+            st.setBoolean(7, reserva.isEstado());
+            st.setInt(8, reserva.getMesa().getId_mesa());
 
             st.executeUpdate();
 
@@ -72,16 +75,17 @@ public class ReservaData {
 
     public void modificarReserva(Reserva reserva) {
         try {
-            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`fecha_hora`=?,`estado`=?,`id_mesa`=? WHERE `id_reserva`=?";
+            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`fecha_para_reservar`=?,`hora`=? ,`estado`=?,`id_mesa`=? WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, reserva.getApellido());
             st.setString(2, reserva.getNombre());
             st.setInt(3, reserva.getDni());
             st.setInt(4, reserva.getComensales());
-            st.setDate(5, Date.valueOf(reserva.getFechaHora()));
-            st.setBoolean(6, reserva.isEstado());
-            st.setInt(7, reserva.getMesa().getId_mesa());
-            st.setInt(8, reserva.getId_reserva());
+            st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar()));
+            st.setTime(6, Time.valueOf(reserva.getHora()));
+            st.setBoolean(7, reserva.isEstado());
+            st.setInt(8, reserva.getMesa().getId_mesa());
+            st.setInt(9, reserva.getId_reserva());
 
             st.executeUpdate();
             st.close();
@@ -104,13 +108,19 @@ public class ReservaData {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
+                reserva.setId_reserva(rs.getInt("id_reserva"));
                 reserva.setApellido(rs.getString("apellido"));
                 reserva.setNombre(rs.getString("nombre"));
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
                 reserva.setFechaActual(rs.getDate("fecha_reserva"));
-                reserva.setFechaHora(rs.getDate("fecha_para_reserva").toLocalDate());
+                reserva.setFecha_para_reservar(rs.getDate("fecha_para_reservar").toLocalDate());
+                reserva.setHora(rs.getTime("hora").toLocalTime());
                 reserva.setEstado(rs.getBoolean("estado"));
+
+                Mesa mesa = new Mesa();
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                reserva.setMesa(mesa);
 
                 System.out.println(reserva.toString());
                 reservas.add(reserva);
