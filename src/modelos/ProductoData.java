@@ -105,4 +105,30 @@ public class ProductoData {
         }
         return producto;
     }
+    
+    public Producto buscarActivo(Producto producto){
+        
+        String sql = "SELECT * FROM producto WHERE estado=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(5, producto.isEstado());
+            ResultSet rs = ps.executeQuery();
+        
+            if(rs.next()){
+                  producto.setId_producto(rs.getInt(1));
+                  producto.setCodigo(rs.getInt(2));
+                  producto.setNombre(rs.getString(3));
+                  producto.setPrecio(rs.getDouble(4));
+                  producto.setEstado(rs.getBoolean(5));
+                  System.out.println(producto.getNombre());    
+              }  
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar el producto");
+        }        
+        return producto;       
+    }
 }
