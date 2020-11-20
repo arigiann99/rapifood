@@ -60,7 +60,7 @@ public class ReservaData {
             //Reserva reserva = new Reserva();
             String sql = "UPDATE `reserva` SET `estado`=? WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, reserva.isEstado());
+            st.setBoolean(1, false);
             st.setInt(2, reserva.getId_reserva());
 
             st.executeUpdate();

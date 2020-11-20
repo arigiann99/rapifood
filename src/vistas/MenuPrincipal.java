@@ -94,6 +94,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMesas.setText("Mesas");
 
         jmFormularioMesas.setText("Formulario Mesas");
+        jmFormularioMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioMesasActionPerformed(evt);
+            }
+        });
         jmMesas.add(jmFormularioMesas);
 
         jMenuBar1.add(jmMesas);
@@ -101,6 +106,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmReservas.setText("Reservas");
 
         jmFormularioReservas.setText("Formulario Reservas");
+        jmFormularioReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioReservasActionPerformed(evt);
+            }
+        });
         jmReservas.add(jmFormularioReservas);
 
         jMenuBar1.add(jmReservas);
@@ -149,6 +159,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(md);
         escritorio.moveToFront(md);
     }//GEN-LAST:event_jmFormularioMeserosActionPerformed
+
+    private void jmFormularioMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioMesasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        MesaVista mv = new MesaVista();
+        mv.setVisible(true);
+        escritorio.add(mv);
+        escritorio.moveToFront(mv);
+    }//GEN-LAST:event_jmFormularioMesasActionPerformed
+
+    private void jmFormularioReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioReservasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ReservaVista rv= new ReservaVista();
+        rv.setVisible(true);
+        escritorio.add(rv);
+        escritorio.moveToFront(rv);
+    }//GEN-LAST:event_jmFormularioReservasActionPerformed
 
     /**
      * @param args the command line arguments

@@ -53,7 +53,7 @@ public class MeseroVista extends javax.swing.JInternalFrame {
         jbLimpiar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
 
-        jlFormularioMesero.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jlFormularioMesero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlFormularioMesero.setText("FORMULARIO MESERO");
 
         jlId.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -152,9 +152,6 @@ public class MeseroVista extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jlFormularioMesero))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -193,7 +190,10 @@ public class MeseroVista extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jbGuardar)
                                     .addGap(63, 63, 63)
-                                    .addComponent(jbBorrar))))))
+                                    .addComponent(jbBorrar)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jlFormularioMesero)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

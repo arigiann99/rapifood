@@ -46,7 +46,7 @@ public class MesaData {
             //Reserva reserva = new Reserva();
             String sql = "UPDATE `mesa` SET `estado`=? WHERE `id_mesa`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, mesa.isEstado());
+            st.setBoolean(1, false);
             st.setInt(2, mesa.getId_mesa());
 
             st.executeUpdate();
