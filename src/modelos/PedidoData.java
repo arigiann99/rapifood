@@ -63,13 +63,16 @@ public class PedidoData {
     }
 
     public void modificarPedido(Pedido pedido) {
+        LocalDate fecha_pedido = LocalDate.now();
         try {
-            String sql = "UPDATE `pedido` SET `estado`=?,`id_mesa`=?,`id_mesero`=? WHERE `id_pedido`=?";
+            String sql = "UPDATE `pedido` SET `estado`=?,`fecha_pedido`=?,`id_mesa`=?,`id_mesero`=? WHERE `id_pedido`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, pedido.isEstado());
-            st.setInt(2, pedido.getMesa().getId_mesa());
-            st.setInt(3, pedido.getMesero().getId_mesero());
-            st.setInt(4, pedido.getId_pedido());
+            st.setInt(1, pedido.getId_pedido());
+            st.setBoolean(2, pedido.isEstado());
+            st.setDate(3, Date.valueOf(fecha_pedido));
+            st.setInt(4, pedido.getMesa().getId_mesa());
+            st.setInt(5, pedido.getMesero().getId_mesero());
+            
 
             st.executeUpdate();
             st.close();
