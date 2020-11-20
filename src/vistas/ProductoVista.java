@@ -47,16 +47,22 @@ public class ProductoVista extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
 
+        jlFormularioProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlFormularioProducto.setText("FORMULARIO PRODUCTO");
 
+        jlId.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlId.setText("ID:");
 
+        jlCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlCodigo.setText("Codigo:");
 
+        jlNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlNombre.setText("Nombre:");
 
+        jlPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlPrecio.setText("Precio:");
 
+        jlEstado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlEstado.setText("Estado:");
 
         jtId.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -77,8 +83,10 @@ public class ProductoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbEstado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbEstado.setText("Activo");
 
+        jbBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbBuscar.setText("Buscar");
         jbBuscar.setEnabled(false);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +95,7 @@ public class ProductoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jbGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +103,7 @@ public class ProductoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jbActualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbActualizar.setText("Actualizar");
         jbActualizar.setEnabled(false);
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +112,7 @@ public class ProductoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBorrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbBorrar.setText("Borrar");
         jbBorrar.setEnabled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,13 +121,15 @@ public class ProductoVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jbSalir.setText("Salir");
+        jbSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbSalir.setText("Volver");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
 
+        jbLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,40 +142,52 @@ public class ProductoVista extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jlCodigo)
-                        .addComponent(jlId)
-                        .addComponent(jlNombre)
-                        .addComponent(jlPrecio)
-                        .addComponent(jlEstado))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlId)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbGuardar)
-                        .addGap(4, 4, 4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlFormularioProducto)
-                            .addComponent(jcbEstado)
-                            .addComponent(jtCodigo)
-                            .addComponent(jtNombre)
-                            .addComponent(jtPrecio)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                .addComponent(jbBuscar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(84, 84, 84)
+                                .addComponent(jbBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbEstado))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbActualizar)
+                        .addComponent(jlNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbBorrar)))
-                .addGap(18, 18, 18)
-                .addComponent(jbSalir)
-                .addContainerGap())
+                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbActualizar)
+                            .addComponent(jbGuardar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jbSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jbLimpiar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbBorrar)))))
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlFormularioProducto))
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,11 +195,15 @@ public class ProductoVista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jlFormularioProducto)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlId)
-                    .addComponent(jbBuscar))
-                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlId))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbBuscar)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCodigo)
                     .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -190,14 +219,17 @@ public class ProductoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlEstado)
                     .addComponent(jcbEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
-                    .addComponent(jbActualizar)
-                    .addComponent(jbBorrar)
-                    .addComponent(jbSalir)
-                    .addComponent(jbLimpiar))
-                .addGap(26, 26, 26))
+                    .addComponent(jbBorrar))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbLimpiar)
+                    .addComponent(jbActualizar))
+                .addGap(30, 30, 30)
+                .addComponent(jbSalir)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -267,6 +299,7 @@ public class ProductoVista extends javax.swing.JInternalFrame {
        Producto p= new Producto(codigo,nombre,precio,estado);
        pd.agregarProducto(p);
        jtId.setText(p.getId_producto()+"");
+       JOptionPane.showMessageDialog(this, "Producto guardado");
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyPressed

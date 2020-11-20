@@ -51,7 +51,7 @@ public class MeseroData {
         try {
             String sql = "UPDATE `mesero` SET `estado`=? WHERE `id_mesero`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, mesero.isEstado());
+            st.setBoolean(1, false);
             st.setInt(2, mesero.getId_mesero());
 
             st.executeUpdate();

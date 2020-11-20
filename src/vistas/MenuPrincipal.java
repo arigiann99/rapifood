@@ -48,11 +48,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGap(0, 537, Short.MAX_VALUE)
         );
 
         jmArchivo.setText("Archivo");
@@ -82,6 +82,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMeseros.setText("Meseros");
 
         jmFormularioMeseros.setText("Formulario Meseros");
+        jmFormularioMeseros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioMeserosActionPerformed(evt);
+            }
+        });
         jmMeseros.add(jmFormularioMeseros);
 
         jMenuBar1.add(jmMeseros);
@@ -113,15 +118,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio)
         );
 
         pack();
@@ -139,6 +140,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
          System.exit(0);
     }//GEN-LAST:event_jmiSalirActionPerformed
+
+    private void jmFormularioMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioMeserosActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        MeseroVista md = new MeseroVista();
+        md.setVisible(true);
+        escritorio.add(md);
+        escritorio.moveToFront(md);
+    }//GEN-LAST:event_jmFormularioMeserosActionPerformed
 
     /**
      * @param args the command line arguments
