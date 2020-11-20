@@ -127,7 +127,7 @@ public class ProductoData {
             
         } catch (SQLException e) {
             System.err.print(e.getMessage());
-            JOptionPane.showMessageDialog(null, " No se pudo encontrar el producto");
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar el activo");
         }        
         return producto;       
     }

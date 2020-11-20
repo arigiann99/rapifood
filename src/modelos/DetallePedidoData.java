@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,5 +48,25 @@ public class DetallePedidoData {
             JOptionPane.showMessageDialog(null, "No se pudo agregar el requerimiento");
         }
     }
+    
+    public void modificarDetalles(DetallePedido detallePedido) {
+        try {
+            //Reserva reserva = new Reserva();
+            String sql = "UPDATE `detalle_pedido` SET `id_pedido`=? `id_producto`=? WHERE `id_detalle`=?";
+            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setInt(4, detallePedido.getPedido().getId_pedido());
+            st.setInt(5, detallePedido.getProducto().getId_producto());
+
+            st.executeUpdate();
+
+            st.close();
+
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo modificar el detalle  pedido");
+        }
+    }
+    
+   
 
 }
