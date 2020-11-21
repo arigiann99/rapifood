@@ -88,7 +88,7 @@ public class Mesero {
 
     @Override
     public String toString() {
-        return "Mesero{" + "id_mesero=" + id_mesero + '}';
+        return id_mesero +"- "+nombre;
     }
 
 }

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class MesaData {
@@ -94,6 +96,31 @@ public class MesaData {
         } catch (SQLException e) {
             System.err.print(e.getMessage());
             JOptionPane.showMessageDialog(null, " No se pudo encontrar la mesa");
+        }
+        return mesa;
+    }
+
+    public List<Mesa> obtenerMesas() {
+        List<Mesa> mesa = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM mesa";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Mesa mesas;
+            while (rs.next()) {
+                mesas = new Mesa();
+
+                mesas.setId_mesa(rs.getInt("id_mesa"));
+                mesas.setEstado(rs.getBoolean("estado"));
+                mesas.setCapacidad(rs.getInt("capacidad"));
+
+                mesa.add(mesas);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo listar los alumnos");
         }
         return mesa;
     }

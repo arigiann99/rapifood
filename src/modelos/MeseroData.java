@@ -7,6 +7,8 @@ package modelos;
 
 import entidades.Mesero;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,5 +107,33 @@ public class MeseroData {
             JOptionPane.showMessageDialog(null, " No se pudo encontrar al mesero");
         }
         return mesero;
+    }
+    
+    public List<Mesero> obtenerMeseros() {
+        List<Mesero> meseros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM mesero";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Mesero mesero;
+            while (rs.next()) {
+                mesero = new Mesero();
+                
+                mesero.setId_mesero(rs.getInt("id_mesero"));
+                mesero.setApellido(rs.getString("apellido"));
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setCuit(rs.getString("cuit"));
+                mesero.setEstado(rs.getBoolean("estado"));
+                mesero.setDni(rs.getInt("dni"));
+                
+                meseros.add(mesero);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo listar los alumnos");
+        }
+        return meseros;
     }
 }

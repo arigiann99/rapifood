@@ -118,6 +118,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmPedidos.setText("Pedidos");
 
         jmFormularioPedidos.setText("Formulario Pedidos");
+        jmFormularioPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmFormularioPedidosActionPerformed(evt);
+            }
+        });
         jmPedidos.add(jmFormularioPedidos);
 
         jMenuBar1.add(jmPedidos);
@@ -177,6 +182,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.add(rv);
         escritorio.moveToFront(rv);
     }//GEN-LAST:event_jmFormularioReservasActionPerformed
+
+    private void jmFormularioPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFormularioPedidosActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        PedidoVista pv = new PedidoVista();
+        pv.setVisible(true);
+        escritorio.add(pv);
+        escritorio.moveToFront(pv);
+    }//GEN-LAST:event_jmFormularioPedidosActionPerformed
 
     /**
      * @param args the command line arguments

@@ -24,11 +24,10 @@ public class PedidoData {
 
     public void registrarPedido(Pedido pedido) {
         try {
-            String sql = "INSERT INTO `pedido`(`estado`, `id_mesa`, `id_mesero`) VALUES (?,?,?)";
+            String sql = "INSERT INTO `pedido`(`id_mesa`, `id_mesero`) VALUES (?,?)";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, pedido.isEstado());
-            st.setInt(2, pedido.getMesa().getId_mesa());
-            st.setInt(3, pedido.getMesero().getId_mesero());
+            st.setInt(1, pedido.getMesa().getId_mesa());
+            st.setInt(2, pedido.getMesero().getId_mesero());
 
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
@@ -176,5 +175,39 @@ public class PedidoData {
         }
 
         return pedidos;
+    }
+    
+    public Pedido buscarPedido(int id){
+        Pedido pedido = new Pedido();
+        String sql = "SELECT * FROM pedido WHERE id_pedido=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                    pedido.setId_pedido(rs.getInt("id_pedido"));
+                    pedido.setEstado(rs.getBoolean("estado"));
+                    pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
+                    pedido.setCosto(rs.getDouble("costo"));
+                    
+                    Mesa mesa = new Mesa();
+                    mesa.setId_mesa(rs.getInt("id_mesa"));
+                    pedido.setMesa(mesa);
+                    
+                    Mesero mesero = new Mesero();
+                    mesero.setId_mesero(rs.getInt("id_mesero"));
+                    pedido.setMesero(mesero);
+                  
+                  System.out.println(pedido);    
+              }  
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar el alumno");
+        }        
+        return pedido;       
     }
 }

@@ -14,6 +14,12 @@ public class Pedido {
     public Pedido() {
     }
 
+    public Pedido(Mesa mesa, Mesero mesero) {
+        this.mesa = mesa;
+        this.mesero = mesero;
+    }
+    
+    
     public Pedido(boolean estado, Mesa mesa, Mesero mesero) {
         this.estado = estado;
         this.mesa = mesa;

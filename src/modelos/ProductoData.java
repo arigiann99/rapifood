@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,7 +76,6 @@ public class ProductoData {
             st.setString(3, producto.getNombre());
             st.setDouble(4, producto.getPrecio());
             st.setBoolean(5, producto.isEstado());
-            
 
             st.executeUpdate();
             st.close();
@@ -97,7 +98,7 @@ public class ProductoData {
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setEstado(rs.getBoolean("estado"));
             }
-            System.out.println("Detalle del Producto:{ Nombre: " + producto.getNombre()+" Codigo: "+producto.getCodigo() + " Precio: " + producto.getPrecio() + " Estado: " + producto.isEstado() + " }");
+            System.out.println("Detalle del Producto:{ Nombre: " + producto.getNombre() + " Codigo: " + producto.getCodigo() + " Precio: " + producto.getPrecio() + " Estado: " + producto.isEstado() + " }");
             ps.close();
         } catch (SQLException e) {
             System.err.print(e.getMessage());
@@ -105,30 +106,61 @@ public class ProductoData {
         }
         return producto;
     }
-    
-    public Producto buscarActivo(Producto producto){
-        
-        String sql = "SELECT * FROM producto WHERE estado=?";
+
+    public List<Producto> buscarProductosActivos() {
+        List<Producto> productos = new ArrayList<>();
+        String sql = "SELECT * FROM producto WHERE estado=1";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setBoolean(5, producto.isEstado());
+            PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-        
-            if(rs.next()){
-                  producto.setId_producto(rs.getInt(1));
-                  producto.setCodigo(rs.getInt(2));
-                  producto.setNombre(rs.getString(3));
-                  producto.setPrecio(rs.getDouble(4));
-                  producto.setEstado(rs.getBoolean(5));
-                  System.out.println(producto.getNombre());    
-              }  
-            
+            Producto producto;
+            while (rs.next()) {
+
+                producto = new Producto();
+                producto.setId_producto(rs.getInt("id_producto"));
+                producto.setCodigo(rs.getInt("codigo"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setEstado(rs.getBoolean("estado"));
+
+                productos.add(producto);
+            }
+
             ps.close();
-            
+
         } catch (SQLException e) {
             System.err.print(e.getMessage());
-            JOptionPane.showMessageDialog(null, " No se pudo encontrar el activo");
-        }        
-        return producto;       
+            JOptionPane.showMessageDialog(null, " No se pudo listar productos");
+        }
+        return productos;
+    }
+    
+    public List<Producto> buscarProductosNoActivos() {
+        List<Producto> productos = new ArrayList<>();
+        String sql = "SELECT * FROM producto WHERE estado=0";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Producto producto;
+            while (rs.next()) {
+
+                producto = new Producto();
+                producto.setId_producto(rs.getInt("id_producto"));
+                producto.setCodigo(rs.getInt("codigo"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setEstado(rs.getBoolean("estado"));
+
+                productos.add(producto);
+            }
+
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo listar productos");
+        }
+        
+        return productos;
     }
 }

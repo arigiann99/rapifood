@@ -61,9 +61,11 @@ public class TestFood {
         //Producto p = new Producto(3852246, "chivito a las llamas", 1050, true);
         //Producto p = new Producto(332235, "Agua mineral 500cc", 100, true);
         //pd.agregarProducto(p);
-        p.setId_producto(21); //se setea el id para identificar que producto anular o modificar
+//        p.setId_producto(21); //se setea el id para identificar que producto anular o modificar
         //pd.modificarProducto(p);
         //pd.buscarProducto(16);
+//        System.out.println(pd.buscarProductosActivos());
+//        System.out.println(pd.buscarProductosNoActivos());
 
         //MESERO DATA -- PRUEBA DE METODOS
         MeseroData msd = new MeseroData(con);
@@ -93,6 +95,7 @@ public class TestFood {
         DetallePedidoData dpd = new DetallePedidoData(con);
         DetallePedido dp = new DetallePedido( pedido, p);
         //dpd.agregarDetalles(dp);
+        dpd.listarDetallesDeUnPedido(18);
         
 
     }
