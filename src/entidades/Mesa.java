@@ -19,6 +19,10 @@ public class Mesa {
         this.capacidad = capacidad;
         this.estado = estado;
     }
+    
+    public Mesa(int capacidad) {
+        this.capacidad = capacidad;
+    }
 
     public boolean isEstado() {
         return estado;

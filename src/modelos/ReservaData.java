@@ -133,5 +133,39 @@ public class ReservaData {
 
         return reservas;
     }
+    
+    public Reserva buscarReserva(int id) {
+        Reserva reserva = new Reserva();
+        String sql = "SELECT * FROM reserva WHERE id_reserva=?";
+        try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                reserva.setApellido(rs.getString("apellido"));
+                reserva.setNombre(rs.getString("nombre"));
+                reserva.setDni(rs.getInt("dni"));
+                reserva.setComensales(rs.getInt("comensales"));
+                reserva.setFecha_para_reservar(rs.getDate("fecha_hora").toLocalDate());
+                reserva.setHora(rs.getTime("fecha_hora").toLocalTime());
+                reserva.setEstado(rs.getBoolean("estado"));
+                reserva.setFechaActual(rs.getDate("fecha_actual"));
+                reserva.setId_reserva(rs.getInt("id_reserva"));
+              
+                Mesa mesa = new Mesa();
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.getId_mesa();
+                reserva.setMesa(mesa);
+               
+            }
+            //System.out.println("Mesero: { Nombre: " + mesero.getNombre() + " " + mesero.getApellido() + " Dni: " + mesero.getDni() + " Cuit: " + mesero.getCuit() + " Estado: " + mesero.isEstado() + " }");
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar la reserva");
+        }
+        return reserva;
+    }
 
 }

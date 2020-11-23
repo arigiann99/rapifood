@@ -243,9 +243,9 @@ public class ProductoVista extends javax.swing.JInternalFrame {
         int id = Integer.parseInt(jtId.getText());
         Producto producto = pd.buscarProducto(id);
         if (producto != null) {
-            jtId.setText(" "+producto.getId_producto());
+            jtId.setText(""+producto.getId_producto());
             jtNombre.setText(producto.getNombre());
-            jtCodigo.setText(" "+producto.getCodigo());
+            jtCodigo.setText(""+producto.getCodigo());
             jtPrecio.setText(producto.getPrecio()+" ");
             jcbEstado.setSelected(producto.isEstado());
         }
@@ -292,7 +292,8 @@ public class ProductoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       String nombre=jtNombre.getText();
+       int id=Integer.parseInt(jtId.getText());
+        String nombre=jtNombre.getText();
        int codigo=Integer.parseInt(jtCodigo.getText());
        double precio=Double.parseDouble(jtPrecio.getText());
        boolean estado=jcbEstado.isEnabled();
