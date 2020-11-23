@@ -349,22 +349,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
-        if(jtId.getText()!=null){
-           String nombre=jtNombre.getText();
-           String apellido=jtApellido.getText();
-           int dni=Integer.parseInt(jtDni.getText());
-           int comensales=Integer.parseInt(jtComensales.getText());
-           LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
-           LocalTime hora=LocalTime.parse(jtHora.getText());
-           boolean estado=jchEstado.isEnabled();
-           LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
-           Mesa mesa = new Mesa();
-           mesa.setId_mesa(Integer.parseInt(jtMesa.getText()));
-           Reserva R=new Reserva(nombre,apellido,dni,comensales, fechaR,hora,estado,fecha_actual,mesa);
-           rd.anularReserva(R);
-           jbLimpiarActionPerformed(evt);
-           JOptionPane.showMessageDialog(this, "Se anulo la reserva");
-       }
+        int id = Integer.parseInt(jtId.getText());
+        rd.anularReserva(id);
+
+       
     }//GEN-LAST:event_jbBorrarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed

@@ -55,13 +55,12 @@ public class ReservaData {
 
     }
 
-    public void anularReserva(Reserva reserva) { // ver que parametro recibe para dar baja a reserva
+    public void anularReserva(int reserva) { // ver que parametro recibe para dar baja a reserva
         try {
             //Reserva reserva = new Reserva();
-            String sql = "UPDATE `reserva` SET `estado`=? WHERE `id_reserva`=?";
+            String sql = "UPDATE `reserva` SET `estado`=0 WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, reserva.isEstado());
-            st.setInt(2, reserva.getId_reserva());
+            st.setInt(1, reserva);
             st.executeUpdate();
 
             st.close();
