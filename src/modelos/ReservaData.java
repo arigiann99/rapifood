@@ -32,7 +32,6 @@ public class ReservaData {
             st.setInt(4, reserva.getComensales());
             st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar()));
             st.setTime(6, Time.valueOf(reserva.getHora()));
-         //   st.setTime(5, Time.valueOf(reserva.getHora());
             st.setBoolean(7, reserva.isEstado());
             st.setInt(8, reserva.getMesa().getId_mesa());
 
@@ -61,7 +60,7 @@ public class ReservaData {
             //Reserva reserva = new Reserva();
             String sql = "UPDATE `reserva` SET `estado`=? WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, false);
+            st.setBoolean(1, reserva.isEstado());
             st.setInt(2, reserva.getId_reserva());
             st.executeUpdate();
 

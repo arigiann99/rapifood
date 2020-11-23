@@ -65,11 +65,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         jtDni = new javax.swing.JTextField();
         jtComensales = new javax.swing.JTextField();
         jtMesa = new javax.swing.JTextField();
-        jtFecha = new javax.swing.JTextField();
         jtHora = new javax.swing.JTextField();
-        jtFechaActual = new javax.swing.JTextField();
         jchEstado = new javax.swing.JCheckBox();
         jdcFechaActual = new com.toedter.calendar.JDateChooser();
+        jdcFecha = new com.toedter.calendar.JDateChooser();
 
         jlFormularioReserva.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlFormularioReserva.setText("FORMULARIO RESERVA");
@@ -173,43 +172,40 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jtDni))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlId)
+                        .addGap(48, 48, 48)
+                        .addComponent(jtId)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbBuscar)
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jlComensales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtComensales))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlFecha)
-                        .addGap(26, 26, 26)
-                        .addComponent(jtFecha))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlHora)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlEstado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jchEstado)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlFechaActual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jdcFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlId)
-                                .addGap(48, 48, 48)
-                                .addComponent(jtId)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbBuscar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlHora)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlEstado)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jchEstado))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jlFechaActual)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jdcFechaActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlMesa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19)))
+                        .addGap(0, 40, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -257,28 +253,22 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                     .addComponent(jlComensales)
                     .addComponent(jtComensales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlFecha)
-                    .addComponent(jtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlHora)
-                    .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlHora))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlEstado)
                     .addComponent(jchEstado))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlFechaActual)
-                            .addComponent(jtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlMesa)
-                            .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
+                        .addComponent(jlFechaActual)
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbGuardar)
                             .addComponent(jbBorrar))
@@ -287,8 +277,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                             .addComponent(jbActualizar)
                             .addComponent(jbLimpiar)
                             .addComponent(jbVolver)))
-                    .addComponent(jdcFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jdcFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlMesa))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -296,14 +291,12 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
          // TODO add your handling code here:
-         
-     
-           //  int id=Integer.parseInt(jtId.getText());
+        
            String nombre=jtNombre.getText();
            String apellido=jtApellido.getText();
            int dni=Integer.parseInt(jtDni.getText());
            int comensales=Integer.parseInt(jtComensales.getText());
-           LocalDate fechaR=LocalDate.parse(jtFecha.getText());
+           LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
            LocalTime hora=LocalTime.parse(jtHora.getText());
            boolean estado=jchEstado.isEnabled();
            LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
@@ -331,10 +324,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             jtApellido.setText(reserva.getApellido());
             jtDni.setText(""+reserva.getDni());
             jtComensales.setText(""+reserva.getComensales());
-            jtFecha.setText(reserva.getFecha_para_reservar().toString());
+            jdcFecha.setDateFormatString(reserva.getFecha_para_reservar().toString());
             jtHora.setText(reserva.getHora().toString());
             jchEstado.setSelected(reserva.isEstado());
-            jtFechaActual.setText(reserva.getFechaActual().toString());
+            jdcFechaActual.setDateFormatString(reserva.getFechaActual().toString());
             jtMesa.setText(""+reserva.getMesa());
             
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -346,10 +339,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             jtApellido.setText("");
             jtDni.setText("");
             jtComensales.setText("");
-            jtFecha.setText("");
             jtHora.setText("");
             jchEstado.setSelected(false);
-            jtFechaActual.setText("");
+            jdcFecha.setDateFormatString("");
+            jdcFechaActual.setDateFormatString("");
             jtMesa.setText("");
          
     }//GEN-LAST:event_jbLimpiarActionPerformed
@@ -361,7 +354,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
            String apellido=jtApellido.getText();
            int dni=Integer.parseInt(jtDni.getText());
            int comensales=Integer.parseInt(jtComensales.getText());
-           LocalDate fechaR=LocalDate.parse(jtFecha.getText());
+           LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
            LocalTime hora=LocalTime.parse(jtHora.getText());
            boolean estado=jchEstado.isEnabled();
            LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
@@ -381,7 +374,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
            String apellido=jtApellido.getText();
            int dni=Integer.parseInt(jtDni.getText());
            int comensales=Integer.parseInt(jtComensales.getText());
-           LocalDate fechaR=LocalDate.parse(jtFecha.getText());
+           LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
            LocalTime hora=LocalTime.parse(jtHora.getText());
            boolean estado=jchEstado.isEnabled();
            LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
@@ -403,6 +396,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbVolver;
     private javax.swing.JCheckBox jchEstado;
+    private com.toedter.calendar.JDateChooser jdcFecha;
     private com.toedter.calendar.JDateChooser jdcFechaActual;
     private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel jlComensales;
@@ -418,8 +412,6 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtComensales;
     private javax.swing.JTextField jtDni;
-    private javax.swing.JTextField jtFecha;
-    private javax.swing.JTextField jtFechaActual;
     private javax.swing.JTextField jtHora;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtMesa;
