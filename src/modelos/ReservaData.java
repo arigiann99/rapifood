@@ -24,7 +24,7 @@ public class ReservaData {
 
     public void registrarReserva(Reserva reserva) {
         try {
-            String sql = "INSERT INTO `reserva`(`apellido`, `nombre`, `dni`, `comensales`, `fecha_para_reservar`,`hora`, `estado`, `id_mesa`) VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `reserva`(`apellido`, `nombre`, `dni`, `comensales`, `fecha_hora`, `hora`, `estado`, `id_mesa`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, reserva.getApellido());
             st.setString(2, reserva.getNombre());
@@ -32,6 +32,7 @@ public class ReservaData {
             st.setInt(4, reserva.getComensales());
             st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar()));
             st.setTime(6, Time.valueOf(reserva.getHora()));
+         //   st.setTime(5, Time.valueOf(reserva.getHora());
             st.setBoolean(7, reserva.isEstado());
             st.setInt(8, reserva.getMesa().getId_mesa());
 
@@ -62,7 +63,6 @@ public class ReservaData {
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setBoolean(1, false);
             st.setInt(2, reserva.getId_reserva());
-
             st.executeUpdate();
 
             st.close();
@@ -75,7 +75,7 @@ public class ReservaData {
 
     public void modificarReserva(Reserva reserva) {
         try {
-            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`fecha_para_reservar`=?,`hora`=? ,`estado`=?,`id_mesa`=? WHERE `id_reserva`=?";
+            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`fecha_hora`=?,`hora`=?,`estado`=?,`id_mesa`=? WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, reserva.getApellido());
             st.setString(2, reserva.getNombre());
@@ -113,7 +113,7 @@ public class ReservaData {
                 reserva.setNombre(rs.getString("nombre"));
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
-                reserva.setFechaActual(rs.getDate("fecha_reserva"));
+                reserva.setFechaActual(rs.getDate("fecha_reserva").toLocalDate());
                 reserva.setFecha_para_reservar(rs.getDate("fecha_para_reservar").toLocalDate());
                 reserva.setHora(rs.getTime("hora").toLocalTime());
                 reserva.setEstado(rs.getBoolean("estado"));
@@ -146,9 +146,9 @@ public class ReservaData {
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
                 reserva.setFecha_para_reservar(rs.getDate("fecha_hora").toLocalDate());
-                reserva.setHora(rs.getTime("fecha_hora").toLocalTime());
+                reserva.setHora(rs.getTime("hora").toLocalTime());
                 reserva.setEstado(rs.getBoolean("estado"));
-                reserva.setFechaActual(rs.getDate("fecha_actual"));
+                reserva.setFechaActual(rs.getDate("fecha_actual").toLocalDate());
                 reserva.setId_reserva(rs.getInt("id_reserva"));
               
                 Mesa mesa = new Mesa();

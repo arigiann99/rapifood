@@ -32,7 +32,7 @@ public class TestFood {
         mesa.setId_mesa(8);
         
         //Reserva r1 = new Reserva("Marcelo", "Pochetino", 20123654,4, LocalDate.of(2020, 11, 20),LocalTime.of(21, 15), true,mesa);
-        Reserva r1 = new Reserva("Lucas", "Weber", 27996774,6, LocalDate.of(2020, 11, 27),LocalTime.of(22, 30), true,mesa);
+      //  Reserva r1 = new Reserva("Lucas", "Weber", 27996774,6, LocalDate.of(2020, 11, 27),LocalTime.of(22, 30), true,mesa);
         //Reserva r1 = new Reserva("Julian", "Azcurra", 31556998,2, LocalDate.of(2020, 11, 19),LocalTime.of(12, 30), true,mesa);
         //r1.setId_reserva(16);//se setea el id para anular o modificar
         

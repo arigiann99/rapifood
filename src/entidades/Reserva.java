@@ -22,13 +22,25 @@ public class Reserva {
     private LocalDate fecha_para_reservar;
     private LocalTime hora;
     private boolean estado;
-    private Date fechaActual;
+    private LocalDate fechaActual;
     private Mesa mesa;
 
     public Reserva() {
     }
 
-    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, Mesa mesa) {
+    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar,  boolean estado, Mesa mesa) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.comensales = comensales;
+        this.fecha_para_reservar = fecha_para_reservar;
+        
+        this.estado = estado;
+        this.mesa = mesa;
+    }
+    
+    
+    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, LocalDate fechaActual, Mesa mesa) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -39,7 +51,7 @@ public class Reserva {
         this.mesa = mesa;
     }
 
-    public Reserva(int id_reserva, String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, Date fechaActual, Mesa mesa) {
+    public Reserva(int id_reserva, String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, LocalDate fechaActual, Mesa mesa) {
         this.id_reserva = id_reserva;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -116,11 +128,11 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public Date getFechaActual() {
+    public LocalDate getFechaActual() {
         return fechaActual;
     }
 
-    public void setFechaActual(Date fechaActual) {
+    public void setFechaActual(LocalDate fechaActual) {
         this.fechaActual = fechaActual;
     }
 
@@ -136,8 +148,5 @@ public class Reserva {
     public String toString() {
         return "Reserva{" + "id_reserva=" + id_reserva + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", comensales=" + comensales + ", fecha_para_reservar=" + fecha_para_reservar + ", hora=" + hora + ", estado=" + estado + ", fechaActual=" + fechaActual + ", mesa=" + mesa + '}';
     }
-
-    
-    
 
 }
