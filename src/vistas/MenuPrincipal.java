@@ -27,6 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmArchivo = new javax.swing.JMenu();
@@ -35,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmFormularioProductos = new javax.swing.JMenuItem();
         jmMeseros = new javax.swing.JMenu();
         jmFormularioMeseros = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmMesas = new javax.swing.JMenu();
         jmFormularioMesas = new javax.swing.JMenuItem();
         jmReservas = new javax.swing.JMenu();
@@ -42,17 +44,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmPedidos = new javax.swing.JMenu();
         jmFormularioPedidos = new javax.swing.JMenuItem();
 
+        jMenu1.setText("jMenu1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 888, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 614, Short.MAX_VALUE)
         );
 
         jmArchivo.setText("Archivo");
@@ -88,6 +92,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jmMeseros.add(jmFormularioMeseros);
+
+        jMenuItem1.setText("Ver pedidos atendidos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmMeseros.add(jMenuItem1);
 
         jMenuBar1.add(jmMeseros);
 
@@ -192,6 +204,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(pv);
     }//GEN-LAST:event_jmFormularioPedidosActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       escritorio.removeAll();
+        escritorio.repaint();
+        PedidosMeseroVista pmv = new PedidosMeseroVista();
+        pmv.setVisible(true);
+        escritorio.add(pmv);
+        escritorio.moveToFront(pmv);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,7 +250,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmArchivo;
     private javax.swing.JMenuItem jmFormularioMesas;
     private javax.swing.JMenuItem jmFormularioMeseros;

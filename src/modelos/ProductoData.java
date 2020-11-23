@@ -56,7 +56,7 @@ public class ProductoData {
         try {
             String sql = "UPDATE `producto` SET `estado`=? WHERE `id_producto`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setBoolean(1, producto.isEstado());
+            st.setBoolean(1, false);
             st.setInt(2, producto.getId_producto());
 
             st.executeUpdate();

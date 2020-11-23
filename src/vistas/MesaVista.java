@@ -90,7 +90,6 @@ public class MesaVista extends javax.swing.JInternalFrame {
 
         jbGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbGuardar.setText("Guardar");
-        jbGuardar.setEnabled(false);
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);

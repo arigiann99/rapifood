@@ -292,8 +292,8 @@ public class ProductoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       int id=Integer.parseInt(jtId.getText());
-        String nombre=jtNombre.getText();
+
+       String nombre=jtNombre.getText();
        int codigo=Integer.parseInt(jtCodigo.getText());
        double precio=Double.parseDouble(jtPrecio.getText());
        boolean estado=jcbEstado.isEnabled();
