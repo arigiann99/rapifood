@@ -29,17 +29,17 @@ public class TestFood {
         ReservaData rd = new ReservaData(con);
 
         Mesa mesa = new Mesa(); //Se instancia una mesa con su id para asignarla a una reserva al momento de registrar.
-        mesa.setId_mesa(8);
+        mesa.setId_mesa(5);
         
         //Reserva r1 = new Reserva("Marcelo", "Pochetino", 20123654,4, LocalDate.of(2020, 11, 20),LocalTime.of(21, 15), true,mesa);
-      //  Reserva r1 = new Reserva("Lucas", "Weber", 27996774,6, LocalDate.of(2020, 11, 27),LocalTime.of(22, 30), true,mesa);
+        Reserva r1 = new Reserva("Lucassssss", "Weber", 27996774,6, LocalDate.of(2020, 11, 27),LocalTime.of(22, 30), true,LocalDate.of(2020, 11, 23),mesa);
       //  Reserva r1 = new Reserva("Julian", "Azcurra", 31556998,2, LocalDate.of(2020, 11, 19),LocalTime.of(12, 30), true,mesa);
         //r1.setId_reserva(16);//se setea el id para anular o modificar
         
         //RESERVA DATA -- PRUEBA DE METODOS
         
-        //rd.registrarReserva(r1);
-      //  rd.modificarReserva(r1); //se setea el id para identificar que reserva anular o modificar
+   //    rd.registrarReserva(r1);
+       rd.modificarReserva(r1); //se setea el id para identificar que reserva anular o modificar
         //rd.anularReserva(r1); // se debe modicicar reserva instanciada porque es una baja "logica".
         //rd.listarReservas(LocalDate.of(2020, 11, 9)); //Las reservas realizadas en una fecha específica.(CONSIGNA)
         

@@ -143,10 +143,10 @@ public class ReservaData {
                 reserva.setNombre(rs.getString("nombre"));
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
-                reserva.setFecha_para_reservar(rs.getDate("fecha_para_reservar").toLocalDate());
+                reserva.setFecha_para_reservar(rs.getDate("fecha_hora").toLocalDate());
                 reserva.setHora(rs.getTime("hora").toLocalTime());
                 reserva.setEstado(rs.getBoolean("estado"));
-                reserva.setFechaActual(rs.getDate("fecha_reserva").toLocalDate());
+                reserva.setFechaActual(rs.getDate("fecha_actual").toLocalDate());
                 reserva.setId_reserva(rs.getInt("id_reserva"));
               
                 Mesa mesa = new Mesa();
@@ -164,6 +164,43 @@ public class ReservaData {
             JOptionPane.showMessageDialog(null, " No se pudo encontrar la reserva");
         }
         return reserva;
+    }
+    
+    
+    public List<Reserva> buscarReservaXfecha(LocalDate fecha_hora){
+        List<Reserva> reservas = new ArrayList<>();
+        Reserva r= null;
+        String sql = "SELECT * FROM reserva WHERE fecha_hora=?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setDate(1, java.sql.Date.valueOf(fecha_hora));
+            ResultSet rs = ps.executeQuery();
+    
+            while (rs.next()) {
+                r=new Reserva();
+                r.setId_reserva(rs.getInt("id_reserva"));
+                r.setApellido(rs.getString("apellido"));
+                r.setNombre(rs.getString("nombre"));
+                r.setDni(rs.getInt("dni"));
+                r.setComensales(rs.getInt("comensales"));
+                r.setFecha_para_reservar(rs.getDate("fecha_hora").toLocalDate());
+                r.setHora(rs.getTime("hora").toLocalTime());
+                r.setEstado(rs.getBoolean("estado"));
+                r.setFechaActual(rs.getDate("fecha_actual").toLocalDate());
+                Mesa mesa = new Mesa();
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.getId_mesa();
+                r.setMesa(mesa);
+                reservas.add(r);
+            }
+            //System.out.println("Mesero: { Nombre: " + mesero.getNombre() + " " + mesero.getApellido() + " Dni: " + mesero.getDni() + " Cuit: " + mesero.getCuit() + " Estado: " + mesero.isEstado() + " }");
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar la reserva");
+        }
+        return reservas;
     }
 
 }
