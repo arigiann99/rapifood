@@ -94,8 +94,10 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", fecha_pedido=" + fecha_pedido + ", estado=" + estado + ", costo=" + costo + ", mesa=" + mesa + ", mesero=" + mesero + '}';
+        return id_pedido +"";
     }
+
+   
 
    
 }

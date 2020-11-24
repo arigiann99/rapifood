@@ -24,12 +24,13 @@ public class DetallePedidoData {
         con = conexion.getConection();
     }
 
-    public void agregarDetalles(DetallePedido detallePedido) {
+    public void agregarDetalles(int pedido, int producto) {
+        DetallePedido detallePedido = new DetallePedido();
         try {
             String sql = "INSERT INTO `detalle_pedido`(`id_pedido`, `id_producto`) VALUES (?,?)";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setInt(1, detallePedido.getPedido().getId_pedido());
-            st.setInt(2, detallePedido.getProducto().getId_producto());
+            st.setInt(1, pedido);
+            st.setInt(2, producto);
 
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();

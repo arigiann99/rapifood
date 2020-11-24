@@ -14,7 +14,6 @@ import modelos.Conexion;
 import modelos.MeseroData;
 import modelos.PedidoData;
 
-
 /**
  *
  * @author mgara
@@ -30,13 +29,13 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
 
     public PedidosMeseroVista() {
         initComponents();
-        con= new Conexion();
+        con = new Conexion();
         modelo = new DefaultTableModel();
-        
-        md= new MeseroData(con);
-        listaMeseros=(ArrayList<Mesero>) md.obtenerMeseros();
-        
-        pd= new PedidoData(con);
+
+        md = new MeseroData(con);
+        listaMeseros = (ArrayList<Mesero>) md.obtenerMeseros();
+
+        pd = new PedidoData(con);
         cargarMeseros();
         armarCabeceraTabla();
         cargarDatos();
@@ -59,7 +58,6 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
         jlMesero.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jlMesero.setText("Mesero:");
 
-        jcbMeseros.setSelectedIndex(-1);
         jcbMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbMeserosActionPerformed(evt);
@@ -103,12 +101,9 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbVolver)
-                        .addGap(65, 65, 65))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +114,7 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlMesero)
                     .addComponent(jcbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbVolver)
@@ -130,24 +125,24 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcbMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMeserosActionPerformed
-         cargarDatos();
+        cargarDatos();
     }//GEN-LAST:event_jcbMeserosActionPerformed
 
     private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
-         dispose();
+        dispose();
     }//GEN-LAST:event_jbVolverActionPerformed
-        
+
     public void borrarFilasTablas() {
         int a = modelo.getRowCount() - 1;
         for (int i = a; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
+
     private void cargarMeseros() {
-        for(Mesero item:listaMeseros){
-            jcbMeseros.addItem(item);         
-        }     
+        for (Mesero item : listaMeseros) {
+            jcbMeseros.addItem(item);
+        }
     }
 
     private void armarCabeceraTabla() {
@@ -162,14 +157,14 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
         });
         jtPedidos.setModel(modelo);
     }
-    
-  private void cargarDatos() {
+
+    private void cargarDatos() {
         borrarFilasTablas();
-        Mesero select = (Mesero)jcbMeseros.getSelectedItem();
-        listaPedidos = (ArrayList<Pedido>) pd.PedidosAtendidosPorMeseros(select.getId_mesero());
-        
-        for(Pedido m:listaPedidos){
-            modelo.addRow(new Object[]{m.getId_pedido(),m.getFecha_pedido(), m.getMesa().getId_mesa(),m.getCosto(),m.isEstado()});
+        Mesero select = (Mesero) jcbMeseros.getSelectedItem();
+        listaPedidos = (ArrayList) pd.PedidosAtendidosPorMeseros(select.getId_mesero());
+
+        for (Pedido m : listaPedidos) {
+            modelo.addRow(new Object[]{m.getId_pedido(), m.getFecha_pedido(), m.getMesa(), m.getCosto(), m.isEstado()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

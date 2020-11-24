@@ -71,7 +71,6 @@ public class PedidoData {
             st.setDate(3, Date.valueOf(fecha_pedido));
             st.setInt(4, pedido.getMesa().getId_mesa());
             st.setInt(5, pedido.getMesero().getId_mesero());
-            
 
             st.executeUpdate();
             st.close();
@@ -105,7 +104,7 @@ public class PedidoData {
             System.err.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "No se pudo obtener resultados");
         }
-        System.out.println("El mesero N°" + id + " atendio: " + mesero.size() + " pedidos");
+//        System.out.println("El mesero N°" + id + " atendio: " + mesero.size() + " pedidos");
         return mesero;
     }
 
@@ -176,38 +175,39 @@ public class PedidoData {
 
         return pedidos;
     }
-    
-    public Pedido buscarPedido(int id){
+
+    public Pedido buscarPedido(int id) {
         Pedido pedido = new Pedido();
         String sql = "SELECT * FROM pedido WHERE id_pedido=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
-                    pedido.setId_pedido(rs.getInt("id_pedido"));
-                    pedido.setEstado(rs.getBoolean("estado"));
-                    pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
-                    pedido.setCosto(rs.getDouble("costo"));
-                    
-                    Mesa mesa = new Mesa();
-                    mesa.setId_mesa(rs.getInt("id_mesa"));
-                    pedido.setMesa(mesa);
-                    
-                    Mesero mesero = new Mesero();
-                    mesero.setId_mesero(rs.getInt("id_mesero"));
-                    pedido.setMesero(mesero);
-                  
-                  System.out.println(pedido);    
-              }  
-            
+
+            if (rs.next()) {
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setEstado(rs.getBoolean("estado"));
+                pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
+                pedido.setCosto(rs.getDouble("costo"));
+
+                Mesa mesa = new Mesa();
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                pedido.setMesa(mesa);
+
+                Mesero mesero = new Mesero();
+                mesero.setId_mesero(rs.getInt("id_mesero"));
+                pedido.setMesero(mesero);
+
+                System.out.println(pedido);
+            }
+
             ps.close();
-            
+
         } catch (SQLException e) {
             System.err.print(e.getMessage());
             JOptionPane.showMessageDialog(null, " No se pudo encontrar el alumno");
-        }        
-        return pedido;       
+        }
+        return pedido;
     }
+    
 }
