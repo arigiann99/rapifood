@@ -138,16 +138,19 @@ public class PedidoData {
 
     public List<Pedido> listarPedidos(LocalDate fecha) {
         List<Pedido> pedidos = new ArrayList<>();
-        Pedido pedido = new Pedido();
+        
 
         String sql = "SELECT * FROM `pedido` WHERE `fecha_pedido`=?";
         try {
-            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement st = con.prepareStatement(sql);
             st.setDate(1, Date.valueOf(fecha));
 
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
+                Conexion c = new Conexion();
+                
+                Pedido pedido = new Pedido();
                 pedido.setId_pedido(rs.getInt("id_pedido"));
                 pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
                 pedido.setEstado(rs.getBoolean("estado"));
@@ -157,12 +160,14 @@ public class PedidoData {
                 mesa.getId_mesa();
                 pedido.setMesa(mesa);
 
-                Mesero mesero = new Mesero();
-                mesero.setId_mesero(rs.getInt("id_mesero"));
-                mesero.getId_mesero();
+                MeseroData md= new MeseroData(c);
+                
+                Mesero mesero = md.buscarMesero(rs.getInt("id_mesero"));
+                
+                
                 pedido.setMesero(mesero);
 
-                pedido.setCosto(rs.getInt("costo"));
+                
 
                 System.out.println(pedido.toString());
                 pedidos.add(pedido);
@@ -170,7 +175,7 @@ public class PedidoData {
 
         } catch (SQLException ex) {
             System.err.print(ex.getMessage());
-            JOptionPane.showMessageDialog(null, " No se pudo listar las reservas");
+            JOptionPane.showMessageDialog(null, " No se pudo listar los pediddos");
         }
 
         return pedidos;

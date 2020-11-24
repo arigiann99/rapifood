@@ -92,6 +92,7 @@ public class MeseroData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                mesero.setId_mesero(rs.getInt("id_mesero"));
                 mesero.setDni(rs.getInt("dni"));
                 mesero.setNombre(rs.getString("nombre"));
                 mesero.setApellido(rs.getString("apellido"));

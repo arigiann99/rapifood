@@ -8,6 +8,7 @@ package vistas;
 import entidades.Pedido;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +32,11 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
      * Creates new form PedidoListaVista
      */
     public PedidoListaVista() {
+       
         initComponents();
         con = new Conexion();
         modelo = new DefaultTableModel();
-
+         pedidoData= new PedidoData(con);
         armarCabeceraTabla();
     }
 
@@ -129,10 +131,13 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -144,9 +149,9 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SimpleDateFormat dformat = new SimpleDateFormat();
-        String fecha = dformat.format(jFecha.getDate());
-
+        
+        LocalDate fecha =  jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.println(fecha);
         cargarPedidos(fecha);
 
 
@@ -158,9 +163,9 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
 
     private void armarCabeceraTabla() {
         ArrayList<Object> columns = new ArrayList<>();
-        boolean add = columns.add("Id");
+        columns.add("Id");
         columns.add("Estado");
-        columns.add("Costo");
+        columns.add("fecha_pedido");
         columns.add("Mesa");
         columns.add("Mesero");
         columns.forEach((it) -> {
@@ -179,11 +184,11 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
 //    Date  fecha=jDateChooser.getDate();
 //        DateFormat f=new SimpleDateFormat("dd-MM-yyyy");
 //        String fecha2=f.format(fecha);
-    public void cargarPedidos(String fecha) {
-        listaPedidos = pedidoData.listarPedidos(LocalDate.parse(fecha));
+    public void cargarPedidos(LocalDate fecha) {
+        List<Pedido>listaPedidos = pedidoData.listarPedidos(fecha );
         pedido = new Pedido();
         for (Pedido item : listaPedidos) {
-            modelo.addRow(new Object[]{pedido.getId_pedido(), item.isEstado(), item.getCosto(), item.getMesa(), item.getMesero()});
+            modelo.addRow(new Object[]{item.getId_pedido(), item.isEstado(), item.getFecha_pedido(), item.getMesa(), item.getMesero()});
         }
     }
 
