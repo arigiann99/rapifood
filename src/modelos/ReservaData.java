@@ -143,10 +143,10 @@ public class ReservaData {
                 reserva.setNombre(rs.getString("nombre"));
                 reserva.setDni(rs.getInt("dni"));
                 reserva.setComensales(rs.getInt("comensales"));
-                reserva.setFecha_para_reservar(rs.getDate("fecha_hora").toLocalDate());
+                reserva.setFecha_para_reservar(rs.getDate("fecha_para_reservar").toLocalDate());
                 reserva.setHora(rs.getTime("hora").toLocalTime());
                 reserva.setEstado(rs.getBoolean("estado"));
-                reserva.setFechaActual(rs.getDate("fecha_actual").toLocalDate());
+                reserva.setFechaActual(rs.getDate("fecha_reserva").toLocalDate());
                 reserva.setId_reserva(rs.getInt("id_reserva"));
               
                 Mesa mesa = new Mesa();

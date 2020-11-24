@@ -67,8 +67,8 @@ public class DetallePedidoData {
 
     public void borrarDetalleDePedido(int detalle) {
         try {
-            String sql = "DELETE FROM `detalle_pedido` WHERE =?";
-            PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            String sql = "DELETE FROM `detalle_pedido` WHERE id_detalle=?";
+            PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, detalle);
 
             st.executeUpdate();

@@ -43,7 +43,7 @@ public class PedidoBuscarVista extends javax.swing.JInternalFrame {
         productoData = new ProductoData(con);
         meseroData = new MeseroData(con);
         detalle = new DetallePedidoData(con);
-        
+
         armarCabeceraTabla();
 
     }
@@ -196,7 +196,7 @@ public class PedidoBuscarVista extends javax.swing.JInternalFrame {
         Mesero mesero = meseroData.buscarMesero(pedido.getMesero().getId_mesero());
         jtMesero.setText(mesero.getApellido() + " " + mesero.getNombre());
         jTmesa.setText(pedido.getMesa() + "");
-        
+
         cargarProductosDeUnPedido(id);
 
     }//GEN-LAST:event_jbBUSCARActionPerformed
@@ -204,11 +204,11 @@ public class PedidoBuscarVista extends javax.swing.JInternalFrame {
     private void JbANULARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbANULARActionPerformed
         int filaSelect = jTableProducto.getSelectedRow();
         if (filaSelect != -1) {
-                int idDetalle = (Integer) modelo.getValueAt(filaSelect, 0);
+            int idDetalle = (Integer) modelo.getValueAt(filaSelect, 0);
 
-                detalle.borrarDetalleDePedido(idDetalle);
-            }
-        
+            detalle.borrarDetalleDePedido(idDetalle);
+        }
+
         JOptionPane.showMessageDialog(this, "Producto Borrado");
         modelo.removeRow(filaSelect);
     }//GEN-LAST:event_JbANULARActionPerformed
@@ -217,7 +217,7 @@ public class PedidoBuscarVista extends javax.swing.JInternalFrame {
         borrarFilasTablas();
         listaDetalle = detalle.listarDetallesDeUnPedido(id);
         for (DetallePedido item : listaDetalle) {
-            modelo.addRow(new Object[]{item.getId_detalle(),item.getProducto().getId_producto(), item.getProducto().getNombre(), item.getProducto().getPrecio()});
+            modelo.addRow(new Object[]{item.getId_detalle(), item.getProducto().getId_producto(), item.getProducto().getNombre(), item.getProducto().getPrecio()});
         }
     }
 
