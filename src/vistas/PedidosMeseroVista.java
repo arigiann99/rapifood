@@ -149,8 +149,8 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
         ArrayList<Object> columns = new ArrayList<>();
         columns.add("Id");
         columns.add("Fecha");
-        columns.add("Costo");
         columns.add("Id Mesa");
+        columns.add("Id Mesero");
         columns.add("Estado");
         columns.forEach((it) -> {
             modelo.addColumn(it);
@@ -164,7 +164,7 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
         listaPedidos = (ArrayList) pd.PedidosAtendidosPorMeseros(select.getId_mesero());
 
         for (Pedido m : listaPedidos) {
-            modelo.addRow(new Object[]{m.getId_pedido(), m.getFecha_pedido(), m.getMesa(), m.getCosto(), m.isEstado()});
+            modelo.addRow(new Object[]{m.getId_pedido(), m.getFecha_pedido(), m.getMesa(), m.getMesero(), m.isEstado()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

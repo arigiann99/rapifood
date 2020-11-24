@@ -10,6 +10,7 @@ import entidades.Mesero;
 import entidades.Pedido;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -82,8 +83,8 @@ public class PedidoData {
     }
 
     public List<Pedido> PedidosAtendidosPorMeseros(int id) {
-        List<Pedido> mesero = new ArrayList<>();
-        Pedido pedido = new Pedido();
+        List<Pedido> pedidos = new ArrayList<>();
+        
         LocalDate fecha = LocalDate.now(); // Al final del día obtener cuántos pedidos atendió cada mesero. este metodo consultara los pedidos del dia.
         try {
 
@@ -96,8 +97,24 @@ public class PedidoData {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-
-                mesero.add(pedido);
+                
+                Conexion c = new Conexion();
+                
+                Pedido pedido = new Pedido();
+                pedido.setId_pedido(rs.getInt(1));
+                pedido.setFecha_pedido(rs.getDate(3));
+                pedido.setEstado(rs.getBoolean(2));
+                
+                Mesa mesa=new Mesa();
+                mesa.setId_mesa(rs.getInt(4));
+                mesa.getId_mesa();
+                pedido.setMesa(mesa);
+                
+                MeseroData md= new MeseroData(c);
+                Mesero mesero= md.buscarMesero(rs.getInt("id_mesero"));
+               // mesero.setId_mesero(rs.getInt(5));
+                pedido.setMesero(mesero);
+                pedidos.add(pedido);
             }
 
         } catch (SQLException ex) {
@@ -105,7 +122,7 @@ public class PedidoData {
             JOptionPane.showMessageDialog(null, "No se pudo obtener resultados");
         }
 //        System.out.println("El mesero N°" + id + " atendio: " + mesero.size() + " pedidos");
-        return mesero;
+        return pedidos;
     }
 
     public double costoXPedido(int id) {
@@ -161,14 +178,8 @@ public class PedidoData {
                 pedido.setMesa(mesa);
 
                 MeseroData md= new MeseroData(c);
-                
                 Mesero mesero = md.buscarMesero(rs.getInt("id_mesero"));
-                
-                
                 pedido.setMesero(mesero);
-
-                
-
                 System.out.println(pedido.toString());
                 pedidos.add(pedido);
             }
