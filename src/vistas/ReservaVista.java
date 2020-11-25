@@ -156,6 +156,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
         jbVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbVolver.setText("Volver");
+        jbVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVolverActionPerformed(evt);
+            }
+        });
 
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,17 +426,18 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         // TODO add your handling code here:
         if (jtId.getText() != null) {
+            int idReserva = Integer.parseInt(jtId.getText());
             String nombre = jtNombre.getText();
             String apellido = jtApellido.getText();
             int dni = Integer.parseInt(jtDni.getText());
             int comensales = Integer.parseInt(jtComensales.getText());
-            LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
+//            LocalDate fechaR = LocalDateTime.ofInstant(jdcFecha.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
             LocalTime hora = LocalTime.parse(jtHora.getText());
             boolean estado = jchEstado.isEnabled();
-            LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
+//            LocalDate fecha_actual = LocalDateTime.ofInstant(jdcFechaActual.getDate().toInstant(), ZoneId.systemDefault()).toLocalDate();
             Mesa mesa = new Mesa();
             mesa.setId_mesa(Integer.parseInt(jtMesa.getText()));
-            Reserva R = new Reserva(nombre, apellido, dni, comensales, fechaR, hora, estado, fecha_actual, mesa);
+            Reserva R = new Reserva(nombre, apellido, dni, comensales, hora, estado, mesa, idReserva);
             rd.modificarReserva(R);
             jbLimpiarActionPerformed(evt);
             JOptionPane.showMessageDialog(this, "Se actualizo la reserva");
@@ -472,6 +478,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         }
     }//GEN-LAST:event_tbBpfActionPerformed
+
+    private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbVolverActionPerformed
 
 private void armaCabeceraTabla(){
            

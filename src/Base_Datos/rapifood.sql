@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2020 a las 20:49:45
+-- Tiempo de generación: 25-11-2020 a las 01:56:09
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -38,13 +38,20 @@ CREATE TABLE `detalle_pedido` (
 --
 
 INSERT INTO `detalle_pedido` (`id_detalle`, `id_pedido`, `id_producto`) VALUES
-(12, 17, 22),
 (13, 17, 16),
 (14, 17, 21),
-(15, 18, 23),
 (16, 18, 19),
 (17, 18, 18),
-(18, 17, 25);
+(18, 17, 25),
+(19, 19, 16),
+(21, 19, 22),
+(24, 21, 17),
+(25, 21, 19),
+(26, 21, 22),
+(27, 20, 17),
+(29, 19, 19),
+(30, 19, 19),
+(31, 23, 17);
 
 -- --------------------------------------------------------
 
@@ -120,7 +127,12 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`id_pedido`, `estado`, `fecha_pedido`, `costo`, `id_mesa`, `id_mesero`) VALUES
 (17, 1, '2020-11-09', 1255.5, 8, 9),
-(18, 1, '2020-11-09', 1370.75, 4, 9);
+(18, 1, '2020-11-09', 1370.75, 4, 9),
+(19, 1, '2020-11-23', 1101.5, 4, 8),
+(20, 1, '2020-11-24', 350, 4, 7),
+(21, 1, '2020-11-24', NULL, 6, 7),
+(22, 1, '2020-11-24', NULL, 1, 7),
+(23, 1, '2020-11-24', 350, 6, 8);
 
 -- --------------------------------------------------------
 
@@ -164,10 +176,10 @@ CREATE TABLE `reserva` (
   `nombre` varchar(20) DEFAULT NULL,
   `dni` int(11) DEFAULT NULL,
   `comensales` int(11) DEFAULT NULL,
-  `fecha_para_reservar` date DEFAULT NULL,
+  `fecha_hora` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   `estado` tinyint(1) DEFAULT 1,
-  `fecha_reserva` date NOT NULL DEFAULT current_timestamp(),
+  `fecha_actual` date NOT NULL DEFAULT current_timestamp(),
   `id_mesa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -175,7 +187,7 @@ CREATE TABLE `reserva` (
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id_reserva`, `apellido`, `nombre`, `dni`, `comensales`, `fecha_para_reservar`, `hora`, `estado`, `fecha_reserva`, `id_mesa`) VALUES
+INSERT INTO `reserva` (`id_reserva`, `apellido`, `nombre`, `dni`, `comensales`, `fecha_hora`, `hora`, `estado`, `fecha_actual`, `id_mesa`) VALUES
 (15, 'Azcurra', 'Julian', 31556998, 2, '2020-11-19', '12:30:00', 1, '2020-11-09', 10),
 (16, 'Pochetino', 'Marcelo', 20123654, 4, '2020-11-20', '21:15:00', 1, '2020-11-09', 4),
 (17, 'Weber', 'Lucas', 27996774, 6, '2020-11-27', '22:30:00', 1, '2020-11-09', 8);
@@ -233,7 +245,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `mesa`
@@ -251,7 +263,7 @@ ALTER TABLE `mesero`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

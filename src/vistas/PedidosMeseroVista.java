@@ -149,7 +149,7 @@ public class PedidosMeseroVista extends javax.swing.JInternalFrame {
         ArrayList<Object> columns = new ArrayList<>();
         columns.add("Id");
         columns.add("Fecha");
-        columns.add("Id Mesa");
+        columns.add("Precio por Pedido");
         columns.add("Id Mesero");
         columns.add("Estado");
         columns.forEach((it) -> {

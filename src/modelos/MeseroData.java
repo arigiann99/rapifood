@@ -99,7 +99,7 @@ public class MeseroData {
                 mesero.setCuit(rs.getString("cuit"));
                 mesero.setEstado(rs.getBoolean("estado"));
             }
-            System.out.println("Mesero: { Nombre: " + mesero.getNombre() + " " + mesero.getApellido() + " Dni: " + mesero.getDni() + " Cuit: " + mesero.getCuit() + " Estado: " + mesero.isEstado() + " }");
+//            System.out.println("Mesero: { Nombre: " + mesero.getNombre() + " " + mesero.getApellido() + " Dni: " + mesero.getDni() + " Cuit: " + mesero.getCuit() + " Estado: " + mesero.isEstado() + " }");
             
             ps.close();
             

@@ -149,7 +149,7 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        borrarFilasTablas();
         LocalDate fecha =  jFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         System.out.println(fecha);
         cargarPedidos(fecha);
@@ -181,9 +181,6 @@ public class PedidoListaVista extends javax.swing.JInternalFrame {
         }
     }
 
-//    Date  fecha=jDateChooser.getDate();
-//        DateFormat f=new SimpleDateFormat("dd-MM-yyyy");
-//        String fecha2=f.format(fecha);
     public void cargarPedidos(LocalDate fecha) {
         List<Pedido>listaPedidos = pedidoData.listarPedidos(fecha );
         pedido = new Pedido();

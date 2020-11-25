@@ -73,17 +73,17 @@ public class ReservaData {
 
     public void modificarReserva(Reserva reserva) {
         try {
-            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`fecha_hora`=?,`hora`=?,`estado`=?,`id_mesa`=? WHERE `id_reserva`=?";
+            String sql = "UPDATE `reserva` SET `apellido`=?,`nombre`=?,`dni`=?,`comensales`=?,`hora`=?,`estado`=?, `id_mesa`=? WHERE `id_reserva`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, reserva.getApellido());
             st.setString(2, reserva.getNombre());
             st.setInt(3, reserva.getDni());
             st.setInt(4, reserva.getComensales());
-            st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar()));
-            st.setTime(6, Time.valueOf(reserva.getHora()));
-            st.setBoolean(7, reserva.isEstado());
-            st.setInt(8, reserva.getMesa().getId_mesa());
-            st.setInt(9, reserva.getId_reserva());
+//            st.setDate(5, Date.valueOf(reserva.getFecha_para_reservar().toString()));
+            st.setTime(5, Time.valueOf(reserva.getHora()));
+            st.setBoolean(6, reserva.isEstado());
+            st.setInt(7, reserva.getMesa().getId_mesa());
+            st.setInt(8, reserva.getId_reserva());
 
             st.executeUpdate();
             st.close();

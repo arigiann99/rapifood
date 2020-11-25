@@ -38,6 +38,19 @@ public class Reserva {
         this.estado = estado;
         this.mesa = mesa;
     }
+
+    public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, Mesa mesa) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.comensales = comensales;
+        this.fecha_para_reservar = fecha_para_reservar;
+        this.hora = hora;
+        this.estado = estado;
+        this.mesa = mesa;
+    }
+    
+    
     
     
     public Reserva(String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, LocalDate fechaActual, Mesa mesa) {
@@ -51,6 +64,19 @@ public class Reserva {
         this.mesa = mesa;
     }
 
+    public Reserva( String nombre, String apellido, int dni, int comensales, LocalTime hora, boolean estado, Mesa mesa, int id_reserva) {
+        this.id_reserva = id_reserva;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.comensales = comensales;
+//        this.fecha_para_reservar = fecha_para_reservar;
+        this.hora = hora;
+        this.estado = estado;
+        this.mesa = mesa;
+    }
+    
+    
     public Reserva(int id_reserva, String nombre, String apellido, int dni, int comensales, LocalDate fecha_para_reservar, LocalTime hora, boolean estado, LocalDate fechaActual, Mesa mesa) {
         this.id_reserva = id_reserva;
         this.nombre = nombre;
