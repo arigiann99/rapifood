@@ -241,7 +241,7 @@ public class PedidoBuscarVista extends javax.swing.JInternalFrame {
             detalle.borrarDetalleDePedido(idDetalle);
         }
 
-        JOptionPane.showMessageDialog(this, "Producto Borrado");
+        JOptionPane.showMessageDialog(this, "Pedido Borrado");
         modelo.removeRow(filaSelect);
         int id = Integer.parseInt(jtId.getText());
         Double total = pedidoData.costoXPedido(id);

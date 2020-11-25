@@ -419,7 +419,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int id = Integer.parseInt(jtId.getText());
         rd.anularReserva(id);
-
+        JOptionPane.showMessageDialog(this, "Reserva anulada");
 
     }//GEN-LAST:event_jbBorrarActionPerformed
 
