@@ -98,7 +98,6 @@ public class MesaVista extends javax.swing.JInternalFrame {
 
         jbActualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbActualizar.setText("Actualizar");
-        jbActualizar.setEnabled(false);
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbActualizarActionPerformed(evt);
@@ -225,7 +224,7 @@ public class MesaVista extends javax.swing.JInternalFrame {
 
     private void jtCapacidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCapacidadKeyPressed
         jbGuardar.setEnabled(true);
-        jbActualizar.setEnabled(true);
+   
     }//GEN-LAST:event_jtCapacidadKeyPressed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -272,7 +271,7 @@ public class MesaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jcbEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcbEstadoKeyPressed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jcbEstadoKeyPressed
 
 

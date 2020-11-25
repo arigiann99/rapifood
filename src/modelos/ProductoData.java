@@ -72,10 +72,12 @@ public class ProductoData {
         try {
             String sql = "UPDATE `producto` SET `codigo`=?,`nombre`=?,`precio`=?,`estado`=? WHERE `id_producto`=?";
             PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            st.setInt(2, producto.getCodigo());
-            st.setString(3, producto.getNombre());
-            st.setDouble(4, producto.getPrecio());
-            st.setBoolean(5, producto.isEstado());
+            
+            st.setInt(1, producto.getCodigo());
+            st.setString(2, producto.getNombre());
+            st.setDouble(3, producto.getPrecio());
+            st.setBoolean(4, producto.isEstado());
+            st.setInt(5, producto.getId_producto());
 
             st.executeUpdate();
             st.close();
