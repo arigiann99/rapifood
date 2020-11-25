@@ -58,7 +58,7 @@ public class PedidoData {
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "No se pudo anular reserva");
+            JOptionPane.showMessageDialog(null, "No se pudo anular el pedido");
         }
     }
 
@@ -78,7 +78,7 @@ public class PedidoData {
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, "No se pudo modificar reserva");
+            JOptionPane.showMessageDialog(null, "No se pudo modificar el pedido");
         }
     }
 
@@ -221,7 +221,7 @@ public class PedidoData {
 
         } catch (SQLException e) {
             System.err.print(e.getMessage());
-            JOptionPane.showMessageDialog(null, " No se pudo encontrar el alumno");
+            JOptionPane.showMessageDialog(null, " No se pudo encontrar el pedido");
         }
         return pedido;
     }

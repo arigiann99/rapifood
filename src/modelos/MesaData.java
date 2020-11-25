@@ -120,7 +120,7 @@ public class MesaData {
             ps.close();
         } catch (SQLException e) {
             System.err.print(e.getMessage());
-            JOptionPane.showMessageDialog(null, " No se pudo listar los alumnos");
+            JOptionPane.showMessageDialog(null, " No se pudo listar las mesas");
         }
         return mesa;
     }

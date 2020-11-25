@@ -156,6 +156,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
         jbVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbVolver.setText("Volver");
+        jbVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVolverActionPerformed(evt);
+            }
+        });
 
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -472,6 +477,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         }
     }//GEN-LAST:event_tbBpfActionPerformed
+
+    private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbVolverActionPerformed
 
 private void armaCabeceraTabla(){
            
